@@ -85,8 +85,16 @@
     const currentTheme = document.documentElement.getAttribute('data-theme');
     const newTheme = currentTheme === THEME_DARK ? THEME_LIGHT : THEME_DARK;
     
+    // Add transitioning attribute to hide footer gradient during switch
+    document.documentElement.setAttribute('data-theme-transitioning', '');
+    
     applyTheme(newTheme);
     setStoredThemePreference(newTheme);
+    
+    // Remove transitioning attribute after transition completes
+    setTimeout(function() {
+      document.documentElement.removeAttribute('data-theme-transitioning');
+    }, 300);
     
     return newTheme;
   }
