@@ -13,8 +13,8 @@
 /* Small size variant (optimized for smaller text) */
 @font-face {
   font-family: 'Suisse Intl';
-  src: url('fonts/SuisseIntl-Book-Web/S/SuisseIntl-Book-WebS.woff2') format('woff2'),
-       url('fonts/SuisseIntl-Book-Web/S/SuisseIntl-Book-WebS.woff') format('woff');
+  src: url('fonts/SuisseIntl-Regular-Web/S/SuisseIntl-Regular-WebS.woff2') format('woff2'),
+       url('fonts/SuisseIntl-Regular-Web/S/SuisseIntl-Regular-WebS.woff') format('woff');
   font-weight: 450;
   font-style: normal;
   font-display: swap;
@@ -50,10 +50,10 @@
   /* Spacing */
   --spacing-page: 40px;
   --spacing-section: 32px;
-  --spacing-group: 20px;
+  --spacing-group: 16px;
   --spacing-entry: 12px;
   --spacing-inline: 6px;
-  --spacing-gap: 1px;
+  --spacing-gap: 3px;
   
   /* Typography */
   --font-family: 'Suisse Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -99,9 +99,6 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  text-size-adjust: 100%;
 }
 
 body {
@@ -115,7 +112,6 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   min-height: 100vh;
-  overflow-x: hidden;
   transition: 
     background-color var(--transition-theme),
     color var(--transition-theme);
@@ -150,36 +146,15 @@ img {
   display: block;
 }
 
-/* Text selection */
-::selection {
-  background-color: #e5e5e5;
-  color: var(--color-text);
-}
-
-::-moz-selection {
-  background-color: #e5e5e5;
-  color: var(--color-text);
-}
-
-[data-theme="dark"] ::selection {
-  background-color: #333333;
-}
-
-[data-theme="dark"] ::-moz-selection {
-  background-color: #333333;
-}
-
 /* ==========================================================================
    Layout
    ========================================================================== */
 
 .container {
-  position: relative;
+  display: flex;
   min-height: 100vh;
   padding: var(--spacing-page);
-  overflow-x: hidden;
-  max-width: 100%;
-  box-sizing: border-box;
+  gap: var(--spacing-page);
 }
 
 /* ==========================================================================
@@ -187,12 +162,12 @@ img {
    ========================================================================== */
 
 .sidebar {
-  position: relative;
   width: var(--sidebar-width);
-  max-width: 100%;
-  padding-bottom: 80px;
-  overflow-x: hidden;
-  box-sizing: border-box;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100vh - var(--spacing-page) * 2);
 }
 
 .sidebar > *:not(.footer) {
@@ -250,7 +225,9 @@ img {
 }
 
 .entry {
-  display: block;
+  display: flex;
+  gap: var(--spacing-gap);
+  white-space: nowrap;
 }
 
 .entry.single {
@@ -259,26 +236,18 @@ img {
 
 .company {
   color: var(--color-text);
-  display: inline;
 }
 
-/* Add separator after company using pseudo-element */
-.company::after {
-  content: ' · ';
+.separator {
   color: var(--color-separator);
-  margin: 0 var(--spacing-gap);
 }
 
 .project {
   color: var(--color-text);
-  display: inline;
-  word-wrap: break-word;
 }
 
 .project-link {
   color: var(--color-text);
-  display: inline;
-  word-wrap: break-word;
 }
 
 .project-link:hover {
@@ -295,73 +264,21 @@ img {
    ========================================================================== */
 
 .footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  width: calc(var(--sidebar-width) + var(--spacing-page) * 2);
-  padding: var(--spacing-page);
-  padding-top: 48px;
-  z-index: 10;
-}
-
-/* Gradient fade effect at top */
-.footer::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, var(--color-bg) 40%, transparent);
-  pointer-events: none;
-  z-index: -1;
-}
-
-/* Solid background only during theme transition to cover content below */
-.footer::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 70%;
-  background-color: var(--color-bg);
-  pointer-events: none;
-  z-index: -2;
-  visibility: hidden;
-  transition: background-color var(--transition-theme);
-}
-
-/* Show solid bg and hide gradient during theme transition */
-html[data-theme-transitioning] .footer::before {
-  visibility: hidden;
-}
-
-html[data-theme-transitioning] .footer::after {
-  visibility: visible;
+  margin-top: auto;
+  padding-top: var(--spacing-section);
 }
 
 .social-links {
-  display: block;
-  line-height: inherit;
-  min-width: 0;
-  flex: 1 1 auto;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
 }
 
 .social-link {
   color: var(--color-text);
-  display: inline;
-}
-
-/* Add separator after each link except the last one */
-.social-link:not(:last-child)::after {
-  content: '\00a0·\00a0';
-  color: var(--color-separator);
-  margin-left: 4px;
-  margin-right: 4px;
 }
 
 .social-link:hover {
@@ -378,7 +295,6 @@ html[data-theme-transitioning] .footer::after {
   justify-content: center;
   width: 24px;
   height: 24px;
-  flex-shrink: 0;
   transition: opacity var(--transition-theme);
 }
 
@@ -400,11 +316,8 @@ html[data-theme-transitioning] .footer::after {
    ========================================================================== */
 
 .showcase {
-  position: fixed;
-  top: var(--spacing-page);
-  right: var(--spacing-page);
-  bottom: var(--spacing-page);
-  left: calc(var(--sidebar-width) + var(--spacing-page) * 2);
+  flex: 1;
+  position: relative;
   overflow: hidden;
   border-radius: 4px;
   background-color: var(--showcase-bg);
@@ -472,33 +385,23 @@ html[data-theme-transitioning] .footer::after {
 @media (max-width: 768px) {
   :root {
     --spacing-page: 24px;
-    --font-size: 16px;
-    --line-height: 26px;
+  }
+  
+  .container {
+    flex-direction: column;
   }
   
   .sidebar {
     width: 100%;
-    padding-bottom: 0;
+    min-height: auto;
   }
   
   .showcase {
     display: none;
   }
   
-  .year {
-    font-size: 14px;
-  }
-  
   .footer {
-    position: relative;
-    width: 100%;
-    padding: 0;
-    padding-top: var(--spacing-section);
-  }
-  
-  .footer::before,
-  .footer::after {
-    display: none;
+    padding-top: var(--spacing-group);
   }
 }
 
@@ -509,6 +412,8 @@ html[data-theme-transitioning] .footer::after {
 @media (max-width: 480px) {
   :root {
     --spacing-page: 20px;
+    --font-size: 16px;
+    --line-height: 24px;
   }
   
   .timeline-group {
