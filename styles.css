@@ -254,6 +254,7 @@ img {
   gap: var(--spacing-gap);
   flex-wrap: wrap;
   min-width: 0;
+  align-items: flex-start;
 }
 
 .entry.single {
@@ -272,9 +273,16 @@ img {
 
 .project {
   color: var(--color-text);
-  flex: 1;
+  flex: 1 1 0;
   min-width: 0;
   word-wrap: break-word;
+}
+
+/* When project wraps to new line, make it full width and offset to align with company */
+.entry:not(.single) .project {
+  flex-basis: 100%;
+  margin-left: calc(-1 * (var(--spacing-gap) * 2));
+  padding-left: calc(var(--spacing-gap) * 2);
 }
 
 .project-link {
