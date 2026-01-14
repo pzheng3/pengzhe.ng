@@ -250,10 +250,7 @@ img {
 }
 
 .entry {
-  display: flex;
-  gap: var(--spacing-gap);
-  min-width: 0;
-  align-items: flex-start;
+  display: block;
 }
 
 .entry.single {
@@ -262,25 +259,25 @@ img {
 
 .company {
   color: var(--color-text);
-  flex-shrink: 0;
+  display: inline;
 }
 
-.separator {
+/* Add separator after company using pseudo-element */
+.company::after {
+  content: ' · ';
   color: var(--color-separator);
-  flex-shrink: 0;
+  margin: 0 var(--spacing-gap);
 }
 
 .project {
   color: var(--color-text);
-  flex: 1;
-  min-width: 0;
+  display: inline;
   word-wrap: break-word;
-  overflow-wrap: break-word;
-  white-space: normal;
 }
 
 .project-link {
   color: var(--color-text);
+  display: inline;
   word-wrap: break-word;
 }
 
