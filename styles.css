@@ -328,7 +328,6 @@ img {
   left: calc(var(--sidebar-width) + var(--spacing-page) * 2);
   overflow: hidden;
   border-radius: 4px;
-  background-color: var(--showcase-bg);
 }
 
 .showcase-inner {
@@ -397,13 +396,32 @@ img {
     --line-height: 26px;
   }
   
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  
   .sidebar {
     width: 100%;
     padding-bottom: 0;
+    order: 2;
   }
   
   .showcase {
-    display: none;
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: calc(100% + var(--spacing-page) * 2);
+    height: auto;
+    margin-left: calc(-1 * var(--spacing-page));
+    margin-right: calc(-1 * var(--spacing-page));
+    margin-top: calc(-1 * var(--spacing-page));
+    margin-bottom: var(--spacing-section);
+    aspect-ratio: 16 / 9;
+    border-radius: 0;
+    order: 1;
   }
   
   .year {
