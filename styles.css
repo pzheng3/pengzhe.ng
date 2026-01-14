@@ -272,8 +272,27 @@ img {
   width: calc(var(--sidebar-width) + var(--spacing-page) * 2);
   padding: var(--spacing-page);
   padding-top: 48px;
-  background: linear-gradient(to top, var(--color-bg) 60%, transparent);
   z-index: 10;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--color-bg) 30%, transparent);
+  opacity: 1;
+  transition: opacity 0.1s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Hide gradient during theme transition */
+html:not([data-theme-transitioning]) .footer::before {
+  opacity: 1;
+}
+
+html[data-theme-transitioning] .footer::before {
+  opacity: 0;
 }
 
 .social-links {
