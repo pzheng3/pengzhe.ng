@@ -149,6 +149,25 @@ img {
   display: block;
 }
 
+/* Text selection */
+::selection {
+  background-color: #e5e5e5;
+  color: var(--color-text);
+}
+
+::-moz-selection {
+  background-color: #e5e5e5;
+  color: var(--color-text);
+}
+
+[data-theme="dark"] ::selection {
+  background-color: #333333;
+}
+
+[data-theme="dark"] ::-moz-selection {
+  background-color: #333333;
+}
+
 /* ==========================================================================
    Layout
    ========================================================================== */
