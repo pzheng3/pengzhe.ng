@@ -402,6 +402,10 @@ img {
     display: none;
   }
   
+  .year {
+    font-size: 14px;
+  }
+  
   .footer {
     padding-top: var(--spacing-group);
   }
