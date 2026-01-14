@@ -280,19 +280,13 @@ img {
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, var(--color-bg) 30%, transparent);
-  opacity: 1;
-  transition: opacity 0.1s ease;
   pointer-events: none;
   z-index: -1;
 }
 
-/* Hide gradient during theme transition */
-html:not([data-theme-transitioning]) .footer::before {
-  opacity: 1;
-}
-
+/* Hide gradient instantly during theme transition */
 html[data-theme-transitioning] .footer::before {
-  opacity: 0;
+  visibility: hidden;
 }
 
 .social-links {
