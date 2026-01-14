@@ -252,9 +252,8 @@ img {
 .entry {
   display: flex;
   gap: var(--spacing-gap);
-  white-space: nowrap;
+  flex-wrap: wrap;
   min-width: 0;
-  overflow: hidden;
 }
 
 .entry.single {
@@ -263,18 +262,24 @@ img {
 
 .company {
   color: var(--color-text);
+  flex-shrink: 0;
 }
 
 .separator {
   color: var(--color-separator);
+  flex-shrink: 0;
 }
 
 .project {
   color: var(--color-text);
+  flex: 1;
+  min-width: 0;
+  word-wrap: break-word;
 }
 
 .project-link {
   color: var(--color-text);
+  word-wrap: break-word;
 }
 
 .project-link:hover {
