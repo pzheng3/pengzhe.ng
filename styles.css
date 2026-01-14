@@ -115,6 +115,7 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   min-height: 100vh;
+  overflow-x: hidden;
   transition: 
     background-color var(--transition-theme),
     color var(--transition-theme);
@@ -176,6 +177,9 @@ img {
   position: relative;
   min-height: 100vh;
   padding: var(--spacing-page);
+  overflow-x: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* ==========================================================================
@@ -185,7 +189,10 @@ img {
 .sidebar {
   position: relative;
   width: var(--sidebar-width);
+  max-width: 100%;
   padding-bottom: 80px;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .sidebar > *:not(.footer) {
@@ -246,6 +253,8 @@ img {
   display: flex;
   gap: var(--spacing-gap);
   white-space: nowrap;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .entry.single {
