@@ -275,8 +275,18 @@ img {
   z-index: 10;
 }
 
-/* Solid background to always cover content below */
+/* Gradient fade effect at top */
 .footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--color-bg) 40%, transparent);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Solid background only during theme transition to cover content below */
+.footer::after {
   content: '';
   position: absolute;
   left: 0;
@@ -286,22 +296,17 @@ img {
   background-color: var(--color-bg);
   pointer-events: none;
   z-index: -2;
+  visibility: hidden;
   transition: background-color var(--transition-theme);
 }
 
-/* Gradient fade effect at top */
-.footer::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, var(--color-bg) 40%, transparent);
-  pointer-events: none;
-  z-index: -1;
+/* Show solid bg and hide gradient during theme transition */
+html[data-theme-transitioning] .footer::before {
+  visibility: hidden;
 }
 
-/* Hide only the gradient during theme transition, solid bg still covers content */
 html[data-theme-transitioning] .footer::after {
-  visibility: hidden;
+  visibility: visible;
 }
 
 .social-links {
