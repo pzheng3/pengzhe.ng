@@ -53,7 +53,7 @@
   --spacing-group: 16px;
   --spacing-entry: 12px;
   --spacing-inline: 6px;
-  --spacing-gap: 4px;
+  --spacing-gap: 1px;
   
   /* Typography */
   --font-family: 'Suisse Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -301,6 +301,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
   width: calc(var(--sidebar-width) + var(--spacing-page) * 2);
   padding: var(--spacing-page);
   padding-top: 48px;
@@ -342,13 +343,25 @@ html[data-theme-transitioning] .footer::after {
 }
 
 .social-links {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-inline);
+  display: block;
+  line-height: inherit;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .social-link {
   color: var(--color-text);
+  display: inline;
+}
+
+/* Add separator after each link except the last one */
+.social-link:not(:last-child)::after {
+  content: '\00a0·\00a0';
+  color: var(--color-separator);
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 .social-link:hover {
@@ -365,6 +378,7 @@ html[data-theme-transitioning] .footer::after {
   justify-content: center;
   width: 24px;
   height: 24px;
+  flex-shrink: 0;
   transition: opacity var(--transition-theme);
 }
 
