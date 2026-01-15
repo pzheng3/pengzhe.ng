@@ -343,25 +343,13 @@ html[data-theme-transitioning] .footer::after {
 }
 
 .social-links {
-  display: block;
-  line-height: inherit;
-  min-width: 0;
-  flex: 1 1 auto;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .social-link {
   color: var(--color-text);
-  display: inline;
-}
-
-/* Add separator after each link except the last one */
-.social-link:not(:last-child)::after {
-  content: '\00a0·\00a0';
-  color: var(--color-separator);
-  margin-left: 4px;
-  margin-right: 4px;
 }
 
 .social-link:hover {
