@@ -431,15 +431,31 @@ html[data-theme-transitioning] .footer::after {
 }
 
 .showcase-mockup {
-  position: relative;
-  max-width: 90%;
-  max-height: 90%;
-  width: auto;
-  height: auto;
+  position: absolute;
+  inset: 40px;
+  width: calc(100% - 80px);
+  height: calc(100% - 80px);
   object-fit: contain;
-  box-shadow: var(--showcase-shadow);
-  border-radius: 8px;
+  object-position: center;
   z-index: 2;
+}
+
+/* Show light version by default, hide dark */
+.showcase-mockup-light {
+  display: block;
+}
+
+.showcase-mockup-dark {
+  display: none;
+}
+
+/* Show dark version in dark mode, hide light */
+[data-theme="dark"] .showcase-mockup-light {
+  display: none;
+}
+
+[data-theme="dark"] .showcase-mockup-dark {
+  display: block;
 }
 
 /* ==========================================================================
