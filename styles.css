@@ -513,21 +513,9 @@ html[data-theme-transitioning] .footer::after {
   display: none;
 }
 
-/* AI Web - Default selected */
-.showcase-image-ai-web-light {
-  display: block;
-}
-
-.showcase-image-ai-web-dark {
+/* Vision - Single image for both modes */
+.showcase-image-vision {
   display: none;
-}
-
-[data-theme="dark"] .showcase-image-ai-web-light {
-  display: none;
-}
-
-[data-theme="dark"] .showcase-image-ai-web-dark {
-  display: block;
 }
 
 /* Navigation Redesign - Light mode */
@@ -592,10 +580,21 @@ html[data-theme-transitioning] .footer::after {
   display: block;
 }
 
-/* AI Web Images */
-.showcase-image-ai-web-light,
+/* AI Web Images (default selected) */
+.showcase-image-ai-web-light {
+  display: block;
+}
+
 .showcase-image-ai-web-dark {
   display: none;
+}
+
+[data-theme="dark"] .showcase-image-ai-web-light {
+  display: none;
+}
+
+[data-theme="dark"] .showcase-image-ai-web-dark {
+  display: block;
 }
 
 .showcase[data-selected="ai-web"] .showcase-image-vision,
@@ -834,276 +833,6 @@ html[data-theme-transitioning] .footer::after {
 }
 
 [data-theme="dark"] .showcase[data-selected="summarize-compose"] .showcase-image-compose-dark {
-  display: block;
-}
-
-/* ==========================================================================
-   Hover State - Show images on hover (overrides selected)
-   ========================================================================== */
-
-/* Vision - Hover */
-.showcase[data-hovered="vision"] .showcase-image-vision {
-  display: block;
-}
-
-.showcase[data-hovered="vision"] .showcase-image-navigation-redesign-light,
-.showcase[data-hovered="vision"] .showcase-image-navigation-redesign-dark,
-.showcase[data-hovered="vision"] .showcase-image-ai-web-light,
-.showcase[data-hovered="vision"] .showcase-image-ai-web-dark,
-.showcase[data-hovered="vision"] .showcase-image-ai-memory-light,
-.showcase[data-hovered="vision"] .showcase-image-ai-memory-dark,
-.showcase[data-hovered="vision"] .showcase-image-add-context-light,
-.showcase[data-hovered="vision"] .showcase-image-add-context-dark,
-.showcase[data-hovered="vision"] .showcase-image-meeting-scheduling-agent-light,
-.showcase[data-hovered="vision"] .showcase-image-meeting-scheduling-agent-dark,
-.showcase[data-hovered="vision"] .showcase-image-home-redesign-light,
-.showcase[data-hovered="vision"] .showcase-image-home-redesign-dark,
-.showcase[data-hovered="vision"] .showcase-image-group {
-  display: none;
-}
-
-/* Navigation Redesign - Hover */
-.showcase[data-hovered="navigation-redesign"] .showcase-image-vision,
-.showcase[data-hovered="navigation-redesign"] .showcase-image-ai-web-light,
-.showcase[data-hovered="navigation-redesign"] .showcase-image-ai-web-dark,
-.showcase[data-hovered="navigation-redesign"] .showcase-image-ai-memory-light,
-.showcase[data-hovered="navigation-redesign"] .showcase-image-ai-memory-dark,
-.showcase[data-hovered="navigation-redesign"] .showcase-image-add-context-light,
-.showcase[data-hovered="navigation-redesign"] .showcase-image-add-context-dark,
-.showcase[data-hovered="navigation-redesign"] .showcase-image-meeting-scheduling-agent-light,
-.showcase[data-hovered="navigation-redesign"] .showcase-image-meeting-scheduling-agent-dark,
-.showcase[data-hovered="navigation-redesign"] .showcase-image-home-redesign-light,
-.showcase[data-hovered="navigation-redesign"] .showcase-image-home-redesign-dark,
-.showcase[data-hovered="navigation-redesign"] .showcase-image-group {
-  display: none;
-}
-
-.showcase[data-hovered="navigation-redesign"] .showcase-image-navigation-redesign-light {
-  display: block;
-}
-
-.showcase[data-hovered="navigation-redesign"] .showcase-image-navigation-redesign-dark {
-  display: none;
-}
-
-[data-theme="dark"] .showcase[data-hovered="navigation-redesign"] .showcase-image-navigation-redesign-light {
-  display: none;
-}
-
-[data-theme="dark"] .showcase[data-hovered="navigation-redesign"] .showcase-image-navigation-redesign-dark {
-  display: block;
-}
-
-/* AI Web - Hover */
-.showcase[data-hovered="ai-web"] .showcase-image-vision,
-.showcase[data-hovered="ai-web"] .showcase-image-navigation-redesign-light,
-.showcase[data-hovered="ai-web"] .showcase-image-navigation-redesign-dark,
-.showcase[data-hovered="ai-web"] .showcase-image-ai-memory-light,
-.showcase[data-hovered="ai-web"] .showcase-image-ai-memory-dark,
-.showcase[data-hovered="ai-web"] .showcase-image-add-context-light,
-.showcase[data-hovered="ai-web"] .showcase-image-add-context-dark,
-.showcase[data-hovered="ai-web"] .showcase-image-meeting-scheduling-agent-light,
-.showcase[data-hovered="ai-web"] .showcase-image-meeting-scheduling-agent-dark,
-.showcase[data-hovered="ai-web"] .showcase-image-home-redesign-light,
-.showcase[data-hovered="ai-web"] .showcase-image-home-redesign-dark,
-.showcase[data-hovered="ai-web"] .showcase-image-group {
-  display: none;
-}
-
-.showcase[data-hovered="ai-web"] .showcase-image-ai-web-light {
-  display: block;
-}
-
-.showcase[data-hovered="ai-web"] .showcase-image-ai-web-dark {
-  display: none;
-}
-
-[data-theme="dark"] .showcase[data-hovered="ai-web"] .showcase-image-ai-web-light {
-  display: none;
-}
-
-[data-theme="dark"] .showcase[data-hovered="ai-web"] .showcase-image-ai-web-dark {
-  display: block;
-}
-
-/* AI Memory - Hover */
-.showcase[data-hovered="ai-memory"] .showcase-image-vision,
-.showcase[data-hovered="ai-memory"] .showcase-image-navigation-redesign-light,
-.showcase[data-hovered="ai-memory"] .showcase-image-navigation-redesign-dark,
-.showcase[data-hovered="ai-memory"] .showcase-image-ai-web-light,
-.showcase[data-hovered="ai-memory"] .showcase-image-ai-web-dark,
-.showcase[data-hovered="ai-memory"] .showcase-image-add-context-light,
-.showcase[data-hovered="ai-memory"] .showcase-image-add-context-dark,
-.showcase[data-hovered="ai-memory"] .showcase-image-meeting-scheduling-agent-light,
-.showcase[data-hovered="ai-memory"] .showcase-image-meeting-scheduling-agent-dark,
-.showcase[data-hovered="ai-memory"] .showcase-image-home-redesign-light,
-.showcase[data-hovered="ai-memory"] .showcase-image-home-redesign-dark,
-.showcase[data-hovered="ai-memory"] .showcase-image-group {
-  display: none;
-}
-
-.showcase[data-hovered="ai-memory"] .showcase-image-ai-memory-light {
-  display: block;
-}
-
-.showcase[data-hovered="ai-memory"] .showcase-image-ai-memory-dark {
-  display: none;
-}
-
-[data-theme="dark"] .showcase[data-hovered="ai-memory"] .showcase-image-ai-memory-light {
-  display: none;
-}
-
-[data-theme="dark"] .showcase[data-hovered="ai-memory"] .showcase-image-ai-memory-dark {
-  display: block;
-}
-
-/* Add Context - Hover */
-.showcase[data-hovered="add-context"] .showcase-image-vision,
-.showcase[data-hovered="add-context"] .showcase-image-navigation-redesign-light,
-.showcase[data-hovered="add-context"] .showcase-image-navigation-redesign-dark,
-.showcase[data-hovered="add-context"] .showcase-image-ai-web-light,
-.showcase[data-hovered="add-context"] .showcase-image-ai-web-dark,
-.showcase[data-hovered="add-context"] .showcase-image-ai-memory-light,
-.showcase[data-hovered="add-context"] .showcase-image-ai-memory-dark,
-.showcase[data-hovered="add-context"] .showcase-image-meeting-scheduling-agent-light,
-.showcase[data-hovered="add-context"] .showcase-image-meeting-scheduling-agent-dark,
-.showcase[data-hovered="add-context"] .showcase-image-home-redesign-light,
-.showcase[data-hovered="add-context"] .showcase-image-home-redesign-dark,
-.showcase[data-hovered="add-context"] .showcase-image-group {
-  display: none;
-}
-
-.showcase[data-hovered="add-context"] .showcase-image-add-context-light {
-  display: block;
-}
-
-.showcase[data-hovered="add-context"] .showcase-image-add-context-dark {
-  display: none;
-}
-
-[data-theme="dark"] .showcase[data-hovered="add-context"] .showcase-image-add-context-light {
-  display: none;
-}
-
-[data-theme="dark"] .showcase[data-hovered="add-context"] .showcase-image-add-context-dark {
-  display: block;
-}
-
-/* Meeting Scheduling Agent - Hover */
-.showcase[data-hovered="meeting-scheduling-agent"] .showcase-image-vision,
-.showcase[data-hovered="meeting-scheduling-agent"] .showcase-image-navigation-redesign-light,
-.showcase[data-hovered="meeting-scheduling-agent"] .showcase-image-navigation-redesign-dark,
-.showcase[data-hovered="meeting-scheduling-agent"] .showcase-image-ai-web-light,
-.showcase[data-hovered="meeting-scheduling-agent"] .showcase-image-ai-web-dark,
-.showcase[data-hovered="meeting-scheduling-agent"] .showcase-image-ai-memory-light,
-.showcase[data-hovered="meeting-scheduling-agent"] .showcase-image-ai-memory-dark,
-.showcase[data-hovered="meeting-scheduling-agent"] .showcase-image-add-context-light,
-.showcase[data-hovered="meeting-scheduling-agent"] .showcase-image-add-context-dark,
-.showcase[data-hovered="meeting-scheduling-agent"] .showcase-image-home-redesign-light,
-.showcase[data-hovered="meeting-scheduling-agent"] .showcase-image-home-redesign-dark,
-.showcase[data-hovered="meeting-scheduling-agent"] .showcase-image-group {
-  display: none;
-}
-
-.showcase[data-hovered="meeting-scheduling-agent"] .showcase-image-meeting-scheduling-agent-light {
-  display: block;
-}
-
-.showcase[data-hovered="meeting-scheduling-agent"] .showcase-image-meeting-scheduling-agent-dark {
-  display: none;
-}
-
-[data-theme="dark"] .showcase[data-hovered="meeting-scheduling-agent"] .showcase-image-meeting-scheduling-agent-light {
-  display: none;
-}
-
-[data-theme="dark"] .showcase[data-hovered="meeting-scheduling-agent"] .showcase-image-meeting-scheduling-agent-dark {
-  display: block;
-}
-
-/* Home Redesign - Hover */
-.showcase[data-hovered="home-redesign"] .showcase-image-vision,
-.showcase[data-hovered="home-redesign"] .showcase-image-navigation-redesign-light,
-.showcase[data-hovered="home-redesign"] .showcase-image-navigation-redesign-dark,
-.showcase[data-hovered="home-redesign"] .showcase-image-ai-web-light,
-.showcase[data-hovered="home-redesign"] .showcase-image-ai-web-dark,
-.showcase[data-hovered="home-redesign"] .showcase-image-ai-memory-light,
-.showcase[data-hovered="home-redesign"] .showcase-image-ai-memory-dark,
-.showcase[data-hovered="home-redesign"] .showcase-image-add-context-light,
-.showcase[data-hovered="home-redesign"] .showcase-image-add-context-dark,
-.showcase[data-hovered="home-redesign"] .showcase-image-meeting-scheduling-agent-light,
-.showcase[data-hovered="home-redesign"] .showcase-image-meeting-scheduling-agent-dark,
-.showcase[data-hovered="home-redesign"] .showcase-image-group {
-  display: none;
-}
-
-.showcase[data-hovered="home-redesign"] .showcase-image-home-redesign-light {
-  display: block;
-}
-
-.showcase[data-hovered="home-redesign"] .showcase-image-home-redesign-dark {
-  display: none;
-}
-
-[data-theme="dark"] .showcase[data-hovered="home-redesign"] .showcase-image-home-redesign-light {
-  display: none;
-}
-
-[data-theme="dark"] .showcase[data-hovered="home-redesign"] .showcase-image-home-redesign-dark {
-  display: block;
-}
-
-/* Summarize and Compose - Hover */
-.showcase[data-hovered="summarize-compose"] .showcase-image-vision,
-.showcase[data-hovered="summarize-compose"] .showcase-image-navigation-redesign-light,
-.showcase[data-hovered="summarize-compose"] .showcase-image-navigation-redesign-dark,
-.showcase[data-hovered="summarize-compose"] .showcase-image-ai-web-light,
-.showcase[data-hovered="summarize-compose"] .showcase-image-ai-web-dark,
-.showcase[data-hovered="summarize-compose"] .showcase-image-ai-memory-light,
-.showcase[data-hovered="summarize-compose"] .showcase-image-ai-memory-dark,
-.showcase[data-hovered="summarize-compose"] .showcase-image-add-context-light,
-.showcase[data-hovered="summarize-compose"] .showcase-image-add-context-dark,
-.showcase[data-hovered="summarize-compose"] .showcase-image-meeting-scheduling-agent-light,
-.showcase[data-hovered="summarize-compose"] .showcase-image-meeting-scheduling-agent-dark,
-.showcase[data-hovered="summarize-compose"] .showcase-image-home-redesign-light,
-.showcase[data-hovered="summarize-compose"] .showcase-image-home-redesign-dark {
-  display: none;
-}
-
-.showcase[data-hovered="summarize-compose"] .showcase-image-group {
-  display: flex;
-}
-
-.showcase[data-hovered="summarize-compose"] .showcase-image-summary-light {
-  display: block;
-}
-
-.showcase[data-hovered="summarize-compose"] .showcase-image-summary-dark {
-  display: none;
-}
-
-.showcase[data-hovered="summarize-compose"] .showcase-image-compose-light {
-  display: block;
-}
-
-.showcase[data-hovered="summarize-compose"] .showcase-image-compose-dark {
-  display: none;
-}
-
-[data-theme="dark"] .showcase[data-hovered="summarize-compose"] .showcase-image-summary-light {
-  display: none;
-}
-
-[data-theme="dark"] .showcase[data-hovered="summarize-compose"] .showcase-image-summary-dark {
-  display: block;
-}
-
-[data-theme="dark"] .showcase[data-hovered="summarize-compose"] .showcase-image-compose-light {
-  display: none;
-}
-
-[data-theme="dark"] .showcase[data-hovered="summarize-compose"] .showcase-image-compose-dark {
   display: block;
 }
 
