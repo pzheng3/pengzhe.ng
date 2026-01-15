@@ -443,14 +443,17 @@ html[data-theme-transitioning] .footer::after {
 }
 
 .showcase-image {
-  width: 100%;
-  height: auto;
-  max-width: 1024px;
   display: block;
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  max-width: 1024px;
+  max-height: 768px;
   object-fit: contain;
+  box-shadow: var(--showcase-shadow);
+  border-radius: 8px;
 }
 
+/* Show light image in light mode, dark image in dark mode */
 .showcase-image-light {
   display: block;
 }
