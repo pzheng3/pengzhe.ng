@@ -169,7 +169,7 @@
   }
 
   /**
-   * Handles entry selection and image switching
+   * Handles entry hover and image switching
    */
   function setupEntrySelection() {
     const selectableEntries = document.querySelectorAll('.entry.selectable');
@@ -179,17 +179,20 @@
       return;
     }
     
+    // Store default image (vision)
+    const defaultImageId = 'vision';
+    
     /**
-     * Selects an entry and updates the showcase image
-     * @param {HTMLElement} entry - The entry element to select
+     * Shows the image for a hovered entry
+     * @param {HTMLElement} entry - The entry element being hovered
      */
-    function selectEntry(entry) {
+    function showEntryImage(entry) {
       // Remove selected class from all entries
       selectableEntries.forEach(function(e) {
         e.classList.remove('selected');
       });
       
-      // Add selected class to clicked entry
+      // Add selected class to hovered entry
       entry.classList.add('selected');
       
       // Get the image identifier from data attribute
@@ -199,20 +202,33 @@
       }
     }
     
-    // Add click handlers to all selectable entries
-    selectableEntries.forEach(function(entry) {
-      entry.addEventListener('click', function() {
-        selectEntry(entry);
+    /**
+     * Resets to default image when mouse leaves
+     */
+    function resetToDefault() {
+      // Remove selected class from all entries
+      selectableEntries.forEach(function(e) {
+        e.classList.remove('selected');
       });
       
-      // Add keyboard support
-      entry.setAttribute('tabindex', '0');
-      entry.setAttribute('role', 'button');
-      entry.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          selectEntry(entry);
-        }
+      // Reset to default image
+      showcase.setAttribute('data-selected', defaultImageId);
+      
+      // Restore default selected entry if it exists
+      const defaultEntry = document.querySelector('.entry.selectable[data-image="' + defaultImageId + '"]');
+      if (defaultEntry) {
+        defaultEntry.classList.add('selected');
+      }
+    }
+    
+    // Add hover handlers to all selectable entries
+    selectableEntries.forEach(function(entry) {
+      entry.addEventListener('mouseenter', function() {
+        showEntryImage(entry);
+      });
+      
+      entry.addEventListener('mouseleave', function() {
+        resetToDefault();
       });
     });
     
@@ -223,6 +239,9 @@
       if (imageId) {
         showcase.setAttribute('data-selected', imageId);
       }
+    } else {
+      // If no default selected, set vision as default
+      showcase.setAttribute('data-selected', defaultImageId);
     }
   }
 
