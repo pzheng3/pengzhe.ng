@@ -503,7 +503,7 @@ html[data-theme-transitioning] .footer::after {
 }
 
 .showcase-image-group .showcase-image {
-  max-width: min(1024px, calc(100vw - var(--sidebar-width) - var(--spacing-page) * 3 - 80px));
+  max-width: min(480px, calc(100vw - var(--sidebar-width) - var(--spacing-page) * 3 - 80px));
   max-height: min(384px, calc((100vh - var(--spacing-page) * 2 - 80px) / 2 - 20px));
 }
 
