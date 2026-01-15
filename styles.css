@@ -266,7 +266,6 @@ img {
 .company::after {
   content: ' · ';
   color: var(--color-separator);
-  margin: 0 var(--spacing-gap);
 }
 
 .project {
@@ -477,7 +476,9 @@ html[data-theme-transitioning] .footer::after {
   position: relative;
   z-index: 2;
   padding: 40px;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
 }
 
@@ -490,6 +491,20 @@ html[data-theme-transitioning] .footer::after {
   object-fit: contain;
   box-shadow: var(--showcase-shadow);
   border-radius: 8px;
+}
+
+/* Image group for multiple images (e.g., summarize and compose) */
+.showcase-image-group {
+  display: none;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.showcase-image-group .showcase-image {
+  max-width: min(1024px, calc(100vw - var(--sidebar-width) - var(--spacing-page) * 3 - 80px));
+  max-height: min(384px, calc((100vh - var(--spacing-page) * 2 - 80px) / 2 - 20px));
 }
 
 /* Show light image in light mode, dark image in dark mode */
@@ -525,7 +540,8 @@ html[data-theme-transitioning] .footer::after {
 .showcase[data-selected="vision"] .showcase-image-meeting-scheduling-agent-light,
 .showcase[data-selected="vision"] .showcase-image-meeting-scheduling-agent-dark,
 .showcase[data-selected="vision"] .showcase-image-home-redesign-light,
-.showcase[data-selected="vision"] .showcase-image-home-redesign-dark {
+.showcase[data-selected="vision"] .showcase-image-home-redesign-dark,
+.showcase[data-selected="vision"] .showcase-image-group {
   display: none;
 }
 
@@ -535,7 +551,8 @@ html[data-theme-transitioning] .footer::after {
 .showcase[data-selected="navigation-redesign"] .showcase-image-meeting-scheduling-agent-light,
 .showcase[data-selected="navigation-redesign"] .showcase-image-meeting-scheduling-agent-dark,
 .showcase[data-selected="navigation-redesign"] .showcase-image-home-redesign-light,
-.showcase[data-selected="navigation-redesign"] .showcase-image-home-redesign-dark {
+.showcase[data-selected="navigation-redesign"] .showcase-image-home-redesign-dark,
+.showcase[data-selected="navigation-redesign"] .showcase-image-group {
   display: none;
 }
 
@@ -567,7 +584,8 @@ html[data-theme-transitioning] .footer::after {
 .showcase[data-selected="ai-web"] .showcase-image-meeting-scheduling-agent-light,
 .showcase[data-selected="ai-web"] .showcase-image-meeting-scheduling-agent-dark,
 .showcase[data-selected="ai-web"] .showcase-image-home-redesign-light,
-.showcase[data-selected="ai-web"] .showcase-image-home-redesign-dark {
+.showcase[data-selected="ai-web"] .showcase-image-home-redesign-dark,
+.showcase[data-selected="ai-web"] .showcase-image-group {
   display: none;
 }
 
@@ -599,7 +617,8 @@ html[data-theme-transitioning] .footer::after {
 .showcase[data-selected="meeting-scheduling-agent"] .showcase-image-ai-web-light,
 .showcase[data-selected="meeting-scheduling-agent"] .showcase-image-ai-web-dark,
 .showcase[data-selected="meeting-scheduling-agent"] .showcase-image-home-redesign-light,
-.showcase[data-selected="meeting-scheduling-agent"] .showcase-image-home-redesign-dark {
+.showcase[data-selected="meeting-scheduling-agent"] .showcase-image-home-redesign-dark,
+.showcase[data-selected="meeting-scheduling-agent"] .showcase-image-group {
   display: none;
 }
 
@@ -631,7 +650,8 @@ html[data-theme-transitioning] .footer::after {
 .showcase[data-selected="home-redesign"] .showcase-image-ai-web-light,
 .showcase[data-selected="home-redesign"] .showcase-image-ai-web-dark,
 .showcase[data-selected="home-redesign"] .showcase-image-meeting-scheduling-agent-light,
-.showcase[data-selected="home-redesign"] .showcase-image-meeting-scheduling-agent-dark {
+.showcase[data-selected="home-redesign"] .showcase-image-meeting-scheduling-agent-dark,
+.showcase[data-selected="home-redesign"] .showcase-image-group {
   display: none;
 }
 
@@ -648,6 +668,62 @@ html[data-theme-transitioning] .footer::after {
 }
 
 [data-theme="dark"] .showcase[data-selected="home-redesign"] .showcase-image-home-redesign-dark {
+  display: block;
+}
+
+/* Summarize and Compose Images (two images stacked) */
+.showcase-image-summary-light,
+.showcase-image-summary-dark,
+.showcase-image-compose-light,
+.showcase-image-compose-dark {
+  display: none;
+}
+
+.showcase[data-selected="summarize-compose"] .showcase-image-vision,
+.showcase[data-selected="summarize-compose"] .showcase-image-navigation-redesign-light,
+.showcase[data-selected="summarize-compose"] .showcase-image-navigation-redesign-dark,
+.showcase[data-selected="summarize-compose"] .showcase-image-ai-web-light,
+.showcase[data-selected="summarize-compose"] .showcase-image-ai-web-dark,
+.showcase[data-selected="summarize-compose"] .showcase-image-meeting-scheduling-agent-light,
+.showcase[data-selected="summarize-compose"] .showcase-image-meeting-scheduling-agent-dark,
+.showcase[data-selected="summarize-compose"] .showcase-image-home-redesign-light,
+.showcase[data-selected="summarize-compose"] .showcase-image-home-redesign-dark {
+  display: none;
+}
+
+.showcase[data-selected="summarize-compose"] .showcase-image-group {
+  display: flex;
+}
+
+.showcase[data-selected="summarize-compose"] .showcase-image-summary-light {
+  display: block;
+}
+
+.showcase[data-selected="summarize-compose"] .showcase-image-summary-dark {
+  display: none;
+}
+
+.showcase[data-selected="summarize-compose"] .showcase-image-compose-light {
+  display: block;
+}
+
+.showcase[data-selected="summarize-compose"] .showcase-image-compose-dark {
+  display: none;
+}
+
+[data-theme="dark"] .showcase[data-selected="summarize-compose"] .showcase-image-summary-light {
+  display: none;
+}
+
+[data-theme="dark"] .showcase[data-selected="summarize-compose"] .showcase-image-summary-dark {
+  display: block;
+}
+
+[data-theme="dark"] .showcase[data-selected="summarize-compose"] .showcase-image-compose-light {
+  display: none;
+}
+
+[data-theme="dark"] .showcase[data-selected="summarize-compose"] .showcase-image-compose-dark {
   display: block;
 }
 
