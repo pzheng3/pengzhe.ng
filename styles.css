@@ -290,6 +290,27 @@ img {
   color: var(--color-accent);
 }
 
+/* Preserve orange color when highlighted text is selected */
+.entry.highlight .project::selection {
+  background-color: #e5e5e5;
+  color: var(--color-accent);
+}
+
+.entry.highlight .project::-moz-selection {
+  background-color: #e5e5e5;
+  color: var(--color-accent);
+}
+
+[data-theme="dark"] .entry.highlight .project::selection {
+  background-color: #333333;
+  color: var(--color-accent);
+}
+
+[data-theme="dark"] .entry.highlight .project::-moz-selection {
+  background-color: #333333;
+  color: var(--color-accent);
+}
+
 /* ==========================================================================
    Footer
    ========================================================================== */
@@ -434,20 +455,16 @@ html[data-theme-transitioning] .footer::after {
   position: relative;
   z-index: 2;
   padding: 40px;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
   box-sizing: border-box;
 }
 
 .showcase-image {
   display: block;
-  width: 100%;
-  height: 100%;
-  max-width: 1024px;
-  max-height: 768px;
+  width: auto;
+  height: auto;
+  max-width: min(1024px, calc(100vw - var(--sidebar-width) - var(--spacing-page) * 3 - 80px));
+  max-height: min(768px, calc(100vh - var(--spacing-page) * 2 - 80px));
   object-fit: contain;
   box-shadow: var(--showcase-shadow);
   border-radius: 8px;
