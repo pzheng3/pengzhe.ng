@@ -286,27 +286,37 @@ img {
 }
 
 /* Highlighted Entry */
-.entry.highlight .project {
+/* Selectable entries */
+.entry.selectable {
+  cursor: pointer;
+  transition: color var(--transition-theme);
+}
+
+.entry.selectable:hover .project {
+  color: var(--color-link-hover);
+}
+
+.entry.selectable.selected .project {
   color: var(--color-accent);
 }
 
-/* Preserve orange color when highlighted text is selected */
-.entry.highlight .project::selection {
+/* Preserve orange color when selected text is highlighted */
+.entry.selectable.selected .project::selection {
   background-color: #e5e5e5;
   color: var(--color-accent);
 }
 
-.entry.highlight .project::-moz-selection {
+.entry.selectable.selected .project::-moz-selection {
   background-color: #e5e5e5;
   color: var(--color-accent);
 }
 
-[data-theme="dark"] .entry.highlight .project::selection {
+[data-theme="dark"] .entry.selectable.selected .project::selection {
   background-color: #333333;
   color: var(--color-accent);
 }
 
-[data-theme="dark"] .entry.highlight .project::-moz-selection {
+[data-theme="dark"] .entry.selectable.selected .project::-moz-selection {
   background-color: #333333;
   color: var(--color-accent);
 }
@@ -471,19 +481,53 @@ html[data-theme-transitioning] .footer::after {
 }
 
 /* Show light image in light mode, dark image in dark mode */
-.showcase-image-light {
+/* Hide all images by default */
+.showcase-image {
+  display: none;
+}
+
+/* Vision - Single image for both modes (default selected) */
+.showcase-image-vision {
   display: block;
 }
 
-.showcase-image-dark {
+/* Navigation Redesign - Light mode */
+.showcase-image-navigation-redesign-light {
   display: none;
 }
 
-[data-theme="dark"] .showcase-image-light {
+/* Navigation Redesign - Dark mode */
+.showcase-image-navigation-redesign-dark {
   display: none;
 }
 
-[data-theme="dark"] .showcase-image-dark {
+/* Show selected image based on data-selected attribute */
+.showcase[data-selected="vision"] .showcase-image-vision {
+  display: block;
+}
+
+.showcase[data-selected="vision"] .showcase-image-navigation-redesign-light,
+.showcase[data-selected="vision"] .showcase-image-navigation-redesign-dark {
+  display: none;
+}
+
+.showcase[data-selected="navigation-redesign"] .showcase-image-vision {
+  display: none;
+}
+
+.showcase[data-selected="navigation-redesign"] .showcase-image-navigation-redesign-light {
+  display: block;
+}
+
+.showcase[data-selected="navigation-redesign"] .showcase-image-navigation-redesign-dark {
+  display: none;
+}
+
+[data-theme="dark"] .showcase[data-selected="navigation-redesign"] .showcase-image-navigation-redesign-light {
+  display: none;
+}
+
+[data-theme="dark"] .showcase[data-selected="navigation-redesign"] .showcase-image-navigation-redesign-dark {
   display: block;
 }
 

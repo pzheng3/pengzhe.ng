@@ -168,6 +168,78 @@
     }
   }
 
+  /**
+   * Handles entry selection and image switching
+   */
+  function setupEntrySelection() {
+    const selectableEntries = document.querySelectorAll('.entry.selectable');
+    const showcase = document.querySelector('.showcase');
+    
+    if (!showcase) {
+      return;
+    }
+    
+    /**
+     * Selects an entry and updates the showcase image
+     * @param {HTMLElement} entry - The entry element to select
+     */
+    function selectEntry(entry) {
+      // Remove selected class from all entries
+      selectableEntries.forEach(function(e) {
+        e.classList.remove('selected');
+      });
+      
+      // Add selected class to clicked entry
+      entry.classList.add('selected');
+      
+      // Get the image identifier from data attribute
+      const imageId = entry.getAttribute('data-image');
+      if (imageId) {
+        showcase.setAttribute('data-selected', imageId);
+      }
+    }
+    
+    // Add click handlers to all selectable entries
+    selectableEntries.forEach(function(entry) {
+      entry.addEventListener('click', function() {
+        selectEntry(entry);
+      });
+      
+      // Add keyboard support
+      entry.setAttribute('tabindex', '0');
+      entry.setAttribute('role', 'button');
+      entry.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          selectEntry(entry);
+        }
+      });
+    });
+    
+    // Set initial selection (vision is selected by default)
+    const defaultEntry = document.querySelector('.entry.selectable.selected');
+    if (defaultEntry) {
+      const imageId = defaultEntry.getAttribute('data-image');
+      if (imageId) {
+        showcase.setAttribute('data-selected', imageId);
+      }
+    }
+  }
+
+  /**
+   * Initializes entry selection after DOM is ready
+   */
+  function initEntrySelection() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupEntrySelection);
+    } else {
+      setupEntrySelection();
+    }
+  }
+
   // Initialize immediately to prevent flash of wrong theme
   init();
+  
+  // Initialize entry selection
+  initEntrySelection();
 })();
