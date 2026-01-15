@@ -292,6 +292,10 @@ img {
   transition: color var(--transition-theme);
 }
 
+.entry.selectable:hover .company {
+  color: var(--color-link-hover);
+}
+
 .entry.selectable:hover .project {
   color: var(--color-link-hover);
 }
