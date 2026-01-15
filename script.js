@@ -169,7 +169,7 @@
   }
 
   /**
-   * Handles entry hover and image switching
+   * Handles entry selection and image switching
    */
   function setupEntrySelection() {
     const selectableEntries = document.querySelectorAll('.entry.selectable');
@@ -179,69 +179,88 @@
       return;
     }
     
-    // Store default image (vision)
-    const defaultImageId = 'vision';
-    
     /**
-     * Shows the image for a hovered entry
-     * @param {HTMLElement} entry - The entry element being hovered
+     * Shows the image for an entry (on hover)
+     * @param {HTMLElement} entry - The entry element
      */
     function showEntryImage(entry) {
+      const imageId = entry.getAttribute('data-image');
+      if (imageId) {
+        showcase.setAttribute('data-hovered', imageId);
+      }
+    }
+    
+    /**
+     * Hides the hovered image and shows the selected one
+     */
+    function hideHoveredImage() {
+      showcase.removeAttribute('data-hovered');
+    }
+    
+    /**
+     * Selects an entry and updates the showcase image
+     * @param {HTMLElement} entry - The entry element to select
+     */
+    function selectEntry(entry) {
       // Remove selected class from all entries
       selectableEntries.forEach(function(e) {
         e.classList.remove('selected');
       });
       
-      // Add selected class to hovered entry
+      // Add selected class to clicked entry
       entry.classList.add('selected');
       
       // Get the image identifier from data attribute
       const imageId = entry.getAttribute('data-image');
       if (imageId) {
         showcase.setAttribute('data-selected', imageId);
-      }
-    }
-    
-    /**
-     * Resets to default image when mouse leaves
-     */
-    function resetToDefault() {
-      // Remove selected class from all entries
-      selectableEntries.forEach(function(e) {
-        e.classList.remove('selected');
-      });
-      
-      // Reset to default image
-      showcase.setAttribute('data-selected', defaultImageId);
-      
-      // Restore default selected entry if it exists
-      const defaultEntry = document.querySelector('.entry.selectable[data-image="' + defaultImageId + '"]');
-      if (defaultEntry) {
-        defaultEntry.classList.add('selected');
+        // Also set as hovered so it shows immediately
+        showcase.setAttribute('data-hovered', imageId);
       }
     }
     
     // Add hover handlers to all selectable entries
     selectableEntries.forEach(function(entry) {
+      // Show image on hover
       entry.addEventListener('mouseenter', function() {
         showEntryImage(entry);
       });
       
+      // Hide hovered image when mouse leaves (show selected instead)
       entry.addEventListener('mouseleave', function() {
-        resetToDefault();
+        hideHoveredImage();
+      });
+      
+      // Select on click
+      entry.addEventListener('click', function() {
+        selectEntry(entry);
+      });
+      
+      // Add keyboard support
+      entry.setAttribute('tabindex', '0');
+      entry.setAttribute('role', 'button');
+      entry.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          selectEntry(entry);
+        }
       });
     });
     
-    // Set initial selection (vision is selected by default)
-    const defaultEntry = document.querySelector('.entry.selectable.selected');
-    if (defaultEntry) {
-      const imageId = defaultEntry.getAttribute('data-image');
-      if (imageId) {
-        showcase.setAttribute('data-selected', imageId);
-      }
+    // Set initial selection (first selectable entry by default)
+    const firstEntry = selectableEntries[0];
+    if (firstEntry) {
+      selectEntry(firstEntry);
     } else {
-      // If no default selected, set vision as default
-      showcase.setAttribute('data-selected', defaultImageId);
+      // Fallback: if no first entry, check for existing selected
+      const defaultEntry = document.querySelector('.entry.selectable.selected');
+      if (defaultEntry) {
+        const imageId = defaultEntry.getAttribute('data-image');
+        if (imageId) {
+          showcase.setAttribute('data-selected', imageId);
+          showcase.setAttribute('data-hovered', imageId);
+        }
+      }
     }
   }
 
