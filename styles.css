@@ -507,11 +507,23 @@ html[data-theme-transitioning] .footer::after {
 }
 
 .showcase[data-selected="vision"] .showcase-image-navigation-redesign-light,
-.showcase[data-selected="vision"] .showcase-image-navigation-redesign-dark {
+.showcase[data-selected="vision"] .showcase-image-navigation-redesign-dark,
+.showcase[data-selected="vision"] .showcase-image-ai-web-light,
+.showcase[data-selected="vision"] .showcase-image-ai-web-dark,
+.showcase[data-selected="vision"] .showcase-image-meeting-scheduling-agent-light,
+.showcase[data-selected="vision"] .showcase-image-meeting-scheduling-agent-dark,
+.showcase[data-selected="vision"] .showcase-image-home-redesign-light,
+.showcase[data-selected="vision"] .showcase-image-home-redesign-dark {
   display: none;
 }
 
-.showcase[data-selected="navigation-redesign"] .showcase-image-vision {
+.showcase[data-selected="navigation-redesign"] .showcase-image-vision,
+.showcase[data-selected="navigation-redesign"] .showcase-image-ai-web-light,
+.showcase[data-selected="navigation-redesign"] .showcase-image-ai-web-dark,
+.showcase[data-selected="navigation-redesign"] .showcase-image-meeting-scheduling-agent-light,
+.showcase[data-selected="navigation-redesign"] .showcase-image-meeting-scheduling-agent-dark,
+.showcase[data-selected="navigation-redesign"] .showcase-image-home-redesign-light,
+.showcase[data-selected="navigation-redesign"] .showcase-image-home-redesign-dark {
   display: none;
 }
 
@@ -528,6 +540,102 @@ html[data-theme-transitioning] .footer::after {
 }
 
 [data-theme="dark"] .showcase[data-selected="navigation-redesign"] .showcase-image-navigation-redesign-dark {
+  display: block;
+}
+
+/* AI Web Images */
+.showcase-image-ai-web-light,
+.showcase-image-ai-web-dark {
+  display: none;
+}
+
+.showcase[data-selected="ai-web"] .showcase-image-vision,
+.showcase[data-selected="ai-web"] .showcase-image-navigation-redesign-light,
+.showcase[data-selected="ai-web"] .showcase-image-navigation-redesign-dark,
+.showcase[data-selected="ai-web"] .showcase-image-meeting-scheduling-agent-light,
+.showcase[data-selected="ai-web"] .showcase-image-meeting-scheduling-agent-dark,
+.showcase[data-selected="ai-web"] .showcase-image-home-redesign-light,
+.showcase[data-selected="ai-web"] .showcase-image-home-redesign-dark {
+  display: none;
+}
+
+.showcase[data-selected="ai-web"] .showcase-image-ai-web-light {
+  display: block;
+}
+
+.showcase[data-selected="ai-web"] .showcase-image-ai-web-dark {
+  display: none;
+}
+
+[data-theme="dark"] .showcase[data-selected="ai-web"] .showcase-image-ai-web-light {
+  display: none;
+}
+
+[data-theme="dark"] .showcase[data-selected="ai-web"] .showcase-image-ai-web-dark {
+  display: block;
+}
+
+/* Meeting Scheduling Agent Images */
+.showcase-image-meeting-scheduling-agent-light,
+.showcase-image-meeting-scheduling-agent-dark {
+  display: none;
+}
+
+.showcase[data-selected="meeting-scheduling-agent"] .showcase-image-vision,
+.showcase[data-selected="meeting-scheduling-agent"] .showcase-image-navigation-redesign-light,
+.showcase[data-selected="meeting-scheduling-agent"] .showcase-image-navigation-redesign-dark,
+.showcase[data-selected="meeting-scheduling-agent"] .showcase-image-ai-web-light,
+.showcase[data-selected="meeting-scheduling-agent"] .showcase-image-ai-web-dark,
+.showcase[data-selected="meeting-scheduling-agent"] .showcase-image-home-redesign-light,
+.showcase[data-selected="meeting-scheduling-agent"] .showcase-image-home-redesign-dark {
+  display: none;
+}
+
+.showcase[data-selected="meeting-scheduling-agent"] .showcase-image-meeting-scheduling-agent-light {
+  display: block;
+}
+
+.showcase[data-selected="meeting-scheduling-agent"] .showcase-image-meeting-scheduling-agent-dark {
+  display: none;
+}
+
+[data-theme="dark"] .showcase[data-selected="meeting-scheduling-agent"] .showcase-image-meeting-scheduling-agent-light {
+  display: none;
+}
+
+[data-theme="dark"] .showcase[data-selected="meeting-scheduling-agent"] .showcase-image-meeting-scheduling-agent-dark {
+  display: block;
+}
+
+/* Home Redesign Images */
+.showcase-image-home-redesign-light,
+.showcase-image-home-redesign-dark {
+  display: none;
+}
+
+.showcase[data-selected="home-redesign"] .showcase-image-vision,
+.showcase[data-selected="home-redesign"] .showcase-image-navigation-redesign-light,
+.showcase[data-selected="home-redesign"] .showcase-image-navigation-redesign-dark,
+.showcase[data-selected="home-redesign"] .showcase-image-ai-web-light,
+.showcase[data-selected="home-redesign"] .showcase-image-ai-web-dark,
+.showcase[data-selected="home-redesign"] .showcase-image-meeting-scheduling-agent-light,
+.showcase[data-selected="home-redesign"] .showcase-image-meeting-scheduling-agent-dark {
+  display: none;
+}
+
+.showcase[data-selected="home-redesign"] .showcase-image-home-redesign-light {
+  display: block;
+}
+
+.showcase[data-selected="home-redesign"] .showcase-image-home-redesign-dark {
+  display: none;
+}
+
+[data-theme="dark"] .showcase[data-selected="home-redesign"] .showcase-image-home-redesign-light {
+  display: none;
+}
+
+[data-theme="dark"] .showcase[data-selected="home-redesign"] .showcase-image-home-redesign-dark {
   display: block;
 }
 
