@@ -136,6 +136,16 @@ h2 {
   font-weight: inherit;
 }
 
+/**
+ * Faux small caps for all-caps words like AI, TV
+ * Reduces font size and adds letter spacing to harmonize with lowercase text
+ */
+.small-caps {
+  font-size: 0.85em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 button {
   font: inherit;
   color: inherit;
