@@ -311,7 +311,7 @@ img {
 
 .entry.selectable .company,
 .entry.selectable .project {
-  transition: color 0.5s linear;
+  transition: color 0.15s linear;
 }
 
 .entry.selectable:hover .company {
