@@ -233,15 +233,11 @@
     // Fade out
     wrapper.classList.add('fading');
     
-    // After fade out, switch image and fade in
+    // Switch image halfway through fade out, so fade in overlaps with fade out
     setTimeout(function() {
       showcase.setAttribute('data-selected', imageId);
-      
-      // Small delay before fading back in
-      setTimeout(function() {
-        wrapper.classList.remove('fading');
-      }, 50);
-    }, 500);
+      wrapper.classList.remove('fading');
+    }, 250);
   }
 
   /**
