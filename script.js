@@ -169,11 +169,56 @@
   }
 
   /**
+   * Checks if the device is mobile
+   * @returns {boolean} True if mobile device
+   */
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+
+  /**
+   * Opens the mobile modal with the selected image
+   * @param {string} imageId - The image identifier
+   */
+  function openMobileModal(imageId) {
+    const modal = document.getElementById('mobileModal');
+    const mobileShowcase = document.querySelector('.mobile-showcase');
+    
+    if (!modal || !mobileShowcase) {
+      return;
+    }
+    
+    // Set the selected image
+    if (imageId) {
+      mobileShowcase.setAttribute('data-selected', imageId);
+    }
+    
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  /**
+   * Closes the mobile modal
+   */
+  function closeMobileModal() {
+    const modal = document.getElementById('mobileModal');
+    
+    if (!modal) {
+      return;
+    }
+    
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  /**
    * Handles entry selection and image switching
    */
   function setupEntrySelection() {
     const selectableEntries = document.querySelectorAll('.entry.selectable');
     const showcase = document.querySelector('.showcase');
+    const modal = document.getElementById('mobileModal');
     
     if (!showcase) {
       return;
@@ -184,18 +229,27 @@
      * @param {HTMLElement} entry - The entry element to select
      */
     function selectEntry(entry) {
-      // Remove selected class from all entries
-      selectableEntries.forEach(function(e) {
-        e.classList.remove('selected');
-      });
-      
-      // Add selected class to clicked entry
-      entry.classList.add('selected');
-      
       // Get the image identifier from data attribute
       const imageId = entry.getAttribute('data-image');
-      if (imageId) {
-        showcase.setAttribute('data-selected', imageId);
+      
+      if (isMobile()) {
+        // On mobile, open modal instead of highlighting
+        if (imageId) {
+          openMobileModal(imageId);
+        }
+      } else {
+        // On desktop, highlight entry and show image in showcase
+        // Remove selected class from all entries
+        selectableEntries.forEach(function(e) {
+          e.classList.remove('selected');
+        });
+        
+        // Add selected class to clicked entry
+        entry.classList.add('selected');
+        
+        if (imageId) {
+          showcase.setAttribute('data-selected', imageId);
+        }
       }
     }
     
@@ -216,12 +270,44 @@
       });
     });
     
-    // Set initial selection (vision is selected by default)
+    // Set initial selection (ai-web is selected by default)
     const defaultEntry = document.querySelector('.entry.selectable.selected');
-    if (defaultEntry) {
+    if (defaultEntry && !isMobile()) {
       const imageId = defaultEntry.getAttribute('data-image');
       if (imageId) {
         showcase.setAttribute('data-selected', imageId);
+      }
+    }
+    
+    // Setup modal close handlers
+    if (modal) {
+      const underlay = modal.querySelector('.mobile-modal-underlay');
+      const modalContent = modal.querySelector('.mobile-modal-content');
+      
+      // Close on underlay click
+      if (underlay) {
+        underlay.addEventListener('click', function() {
+          closeMobileModal();
+        });
+      }
+      
+      // Close on click outside image wrapper (but inside modal content)
+      if (modalContent) {
+        modalContent.addEventListener('click', function(e) {
+          const imageWrapper = modalContent.querySelector('.mobile-showcase-image-wrapper');
+          // If click is not on the image wrapper or its children, close modal
+          if (imageWrapper && !imageWrapper.contains(e.target)) {
+            closeMobileModal();
+          }
+        });
+      }
+      
+      // Prevent closing when clicking on the image wrapper or its children
+      const imageWrapper = modal.querySelector('.mobile-showcase-image-wrapper');
+      if (imageWrapper) {
+        imageWrapper.addEventListener('click', function(e) {
+          e.stopPropagation();
+        });
       }
     }
   }
@@ -237,9 +323,24 @@
     }
   }
 
+  /**
+   * Handles window resize to update mobile/desktop behavior
+   */
+  function handleResize() {
+    const modal = document.getElementById('mobileModal');
+    
+    // If resizing from mobile to desktop, close modal
+    if (!isMobile() && modal && modal.classList.contains('active')) {
+      closeMobileModal();
+    }
+  }
+
   // Initialize immediately to prevent flash of wrong theme
   init();
   
   // Initialize entry selection
   initEntrySelection();
+  
+  // Handle window resize
+  window.addEventListener('resize', handleResize);
 })();
