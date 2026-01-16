@@ -497,10 +497,10 @@ html[data-theme-transitioning] .footer::after {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 50px;
-  height: 10px;
+  width: 60px;
+  height: 6px;
   background-color: rgba(255, 255, 255, 0.25);
-  border-radius: 5px;
+  border-radius: 3px;
   z-index: 10;
   overflow: hidden;
   opacity: 1;
@@ -515,7 +515,7 @@ html[data-theme-transitioning] .footer::after {
   height: 100%;
   width: 0%;
   background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 5px;
+  border-radius: 3px;
   transition: none;
 }
 
