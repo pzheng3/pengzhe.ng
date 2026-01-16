@@ -514,6 +514,9 @@ html[data-theme-transitioning] .footer::after {
   gap: 40px;
   align-items: center;
   justify-content: center;
+  margin-left: 40px;
+  margin-right: 40px;
+  box-sizing: border-box;
 }
 
 .showcase-image-group-horizontal .showcase-image {
