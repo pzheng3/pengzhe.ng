@@ -521,6 +521,7 @@ html[data-theme-transitioning] .footer::after {
   width: auto;
   height: auto;
   object-fit: contain;
+  box-shadow: none;
 }
 
 /* Show light image in light mode, dark image in dark mode */
