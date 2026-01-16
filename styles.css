@@ -563,7 +563,11 @@ html[data-theme-transitioning] .footer::after {
 .showcase[data-selected="vision"] .showcase-image-home-redesign-light,
 .showcase[data-selected="vision"] .showcase-image-home-redesign-dark,
 .showcase[data-selected="vision"] .showcase-image-group,
-.showcase[data-selected="vision"] .showcase-image-group-horizontal {
+.showcase[data-selected="vision"] .showcase-image-group-horizontal,
+.showcase[data-selected="vision"] .showcase-image-mobile-1-light,
+.showcase[data-selected="vision"] .showcase-image-mobile-1-dark,
+.showcase[data-selected="vision"] .showcase-image-mobile-2-light,
+.showcase[data-selected="vision"] .showcase-image-mobile-2-dark {
   display: none;
 }
 
@@ -579,7 +583,11 @@ html[data-theme-transitioning] .footer::after {
 .showcase[data-selected="navigation-redesign"] .showcase-image-home-redesign-light,
 .showcase[data-selected="navigation-redesign"] .showcase-image-home-redesign-dark,
 .showcase[data-selected="navigation-redesign"] .showcase-image-group,
-.showcase[data-selected="navigation-redesign"] .showcase-image-group-horizontal {
+.showcase[data-selected="navigation-redesign"] .showcase-image-group-horizontal,
+.showcase[data-selected="navigation-redesign"] .showcase-image-mobile-1-light,
+.showcase[data-selected="navigation-redesign"] .showcase-image-mobile-1-dark,
+.showcase[data-selected="navigation-redesign"] .showcase-image-mobile-2-light,
+.showcase[data-selected="navigation-redesign"] .showcase-image-mobile-2-dark {
   display: none;
 }
 
@@ -628,7 +636,11 @@ html[data-theme-transitioning] .footer::after {
 .showcase[data-selected="ai-web"] .showcase-image-home-redesign-light,
 .showcase[data-selected="ai-web"] .showcase-image-home-redesign-dark,
 .showcase[data-selected="ai-web"] .showcase-image-group,
-.showcase[data-selected="ai-web"] .showcase-image-group-horizontal {
+.showcase[data-selected="ai-web"] .showcase-image-group-horizontal,
+.showcase[data-selected="ai-web"] .showcase-image-mobile-1-light,
+.showcase[data-selected="ai-web"] .showcase-image-mobile-1-dark,
+.showcase[data-selected="ai-web"] .showcase-image-mobile-2-light,
+.showcase[data-selected="ai-web"] .showcase-image-mobile-2-dark {
   display: none;
 }
 
@@ -666,7 +678,11 @@ html[data-theme-transitioning] .footer::after {
 .showcase[data-selected="ai-memory"] .showcase-image-home-redesign-light,
 .showcase[data-selected="ai-memory"] .showcase-image-home-redesign-dark,
 .showcase[data-selected="ai-memory"] .showcase-image-group,
-.showcase[data-selected="ai-memory"] .showcase-image-group-horizontal {
+.showcase[data-selected="ai-memory"] .showcase-image-group-horizontal,
+.showcase[data-selected="ai-memory"] .showcase-image-mobile-1-light,
+.showcase[data-selected="ai-memory"] .showcase-image-mobile-1-dark,
+.showcase[data-selected="ai-memory"] .showcase-image-mobile-2-light,
+.showcase[data-selected="ai-memory"] .showcase-image-mobile-2-dark {
   display: none;
 }
 
@@ -704,7 +720,11 @@ html[data-theme-transitioning] .footer::after {
 .showcase[data-selected="add-context"] .showcase-image-home-redesign-light,
 .showcase[data-selected="add-context"] .showcase-image-home-redesign-dark,
 .showcase[data-selected="add-context"] .showcase-image-group,
-.showcase[data-selected="add-context"] .showcase-image-group-horizontal {
+.showcase[data-selected="add-context"] .showcase-image-group-horizontal,
+.showcase[data-selected="add-context"] .showcase-image-mobile-1-light,
+.showcase[data-selected="add-context"] .showcase-image-mobile-1-dark,
+.showcase[data-selected="add-context"] .showcase-image-mobile-2-light,
+.showcase[data-selected="add-context"] .showcase-image-mobile-2-dark {
   display: none;
 }
 
@@ -742,7 +762,11 @@ html[data-theme-transitioning] .footer::after {
 .showcase[data-selected="meeting-scheduling-agent"] .showcase-image-home-redesign-light,
 .showcase[data-selected="meeting-scheduling-agent"] .showcase-image-home-redesign-dark,
 .showcase[data-selected="meeting-scheduling-agent"] .showcase-image-group,
-.showcase[data-selected="meeting-scheduling-agent"] .showcase-image-group-horizontal {
+.showcase[data-selected="meeting-scheduling-agent"] .showcase-image-group-horizontal,
+.showcase[data-selected="meeting-scheduling-agent"] .showcase-image-mobile-1-light,
+.showcase[data-selected="meeting-scheduling-agent"] .showcase-image-mobile-1-dark,
+.showcase[data-selected="meeting-scheduling-agent"] .showcase-image-mobile-2-light,
+.showcase[data-selected="meeting-scheduling-agent"] .showcase-image-mobile-2-dark {
   display: none;
 }
 
@@ -780,7 +804,11 @@ html[data-theme-transitioning] .footer::after {
 .showcase[data-selected="home-redesign"] .showcase-image-meeting-scheduling-agent-light,
 .showcase[data-selected="home-redesign"] .showcase-image-meeting-scheduling-agent-dark,
 .showcase[data-selected="home-redesign"] .showcase-image-group,
-.showcase[data-selected="home-redesign"] .showcase-image-group-horizontal {
+.showcase[data-selected="home-redesign"] .showcase-image-group-horizontal,
+.showcase[data-selected="home-redesign"] .showcase-image-mobile-1-light,
+.showcase[data-selected="home-redesign"] .showcase-image-mobile-1-dark,
+.showcase[data-selected="home-redesign"] .showcase-image-mobile-2-light,
+.showcase[data-selected="home-redesign"] .showcase-image-mobile-2-dark {
   display: none;
 }
 
@@ -821,7 +849,11 @@ html[data-theme-transitioning] .footer::after {
 .showcase[data-selected="summarize-compose"] .showcase-image-meeting-scheduling-agent-dark,
 .showcase[data-selected="summarize-compose"] .showcase-image-home-redesign-light,
 .showcase[data-selected="summarize-compose"] .showcase-image-home-redesign-dark,
-.showcase[data-selected="summarize-compose"] .showcase-image-group-horizontal {
+.showcase[data-selected="summarize-compose"] .showcase-image-group-horizontal,
+.showcase[data-selected="summarize-compose"] .showcase-image-mobile-1-light,
+.showcase[data-selected="summarize-compose"] .showcase-image-mobile-1-dark,
+.showcase[data-selected="summarize-compose"] .showcase-image-mobile-2-light,
+.showcase[data-selected="summarize-compose"] .showcase-image-mobile-2-dark {
   display: none;
 }
 
@@ -882,7 +914,11 @@ html[data-theme-transitioning] .footer::after {
 .showcase[data-selected="ai-mobile"] .showcase-image-meeting-scheduling-agent-dark,
 .showcase[data-selected="ai-mobile"] .showcase-image-home-redesign-light,
 .showcase[data-selected="ai-mobile"] .showcase-image-home-redesign-dark,
-.showcase[data-selected="ai-mobile"] .showcase-image-group {
+.showcase[data-selected="ai-mobile"] .showcase-image-group,
+.showcase[data-selected="ai-mobile"] .showcase-image-summary-light,
+.showcase[data-selected="ai-mobile"] .showcase-image-summary-dark,
+.showcase[data-selected="ai-mobile"] .showcase-image-compose-light,
+.showcase[data-selected="ai-mobile"] .showcase-image-compose-dark {
   display: none;
 }
 
