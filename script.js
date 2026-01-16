@@ -237,7 +237,7 @@
     setTimeout(function() {
       showcase.setAttribute('data-selected', imageId);
       wrapper.classList.remove('fading');
-    }, 250);
+    }, 500);
   }
 
   /**
