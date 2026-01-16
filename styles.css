@@ -284,6 +284,15 @@ img {
   color: var(--color-link-hover);
 }
 
+.arrow {
+  color: var(--color-separator);
+}
+
+.project a:hover .arrow,
+.project-link:hover .arrow {
+  color: var(--color-separator);
+}
+
 .project-link {
   color: var(--color-text);
   display: inline;
