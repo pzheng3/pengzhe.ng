@@ -514,8 +514,7 @@ html[data-theme-transitioning] .footer::after {
   gap: 40px;
   align-items: center;
   justify-content: center;
-  margin-left: 40px;
-  margin-right: 40px;
+  width: 100%;
   box-sizing: border-box;
 }
 
@@ -525,6 +524,8 @@ html[data-theme-transitioning] .footer::after {
   height: auto;
   object-fit: contain;
   box-shadow: none;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 /* Show light image in light mode, dark image in dark mode */
