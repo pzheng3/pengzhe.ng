@@ -517,15 +517,18 @@ html[data-theme-transitioning] .footer::after {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .showcase-image-group-horizontal .showcase-image {
   max-height: min(874px, calc(100vh - var(--spacing-page) * 2 - 80px));
+  max-width: calc((100% - 40px) / 2); /* Account for gap between images */
   width: auto;
   height: auto;
   object-fit: contain;
   box-shadow: none;
-  flex: 1 1 0;
+  flex: 0 1 auto; /* Allow shrinking, don't force equal sizes */
   min-width: 0;
 }
 
