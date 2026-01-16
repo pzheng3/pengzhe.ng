@@ -525,7 +525,7 @@ html[data-theme-transitioning] .footer::after {
 
 .carousel-progress.running .carousel-progress-bar {
   width: 100%;
-  transition: width 7s linear, background-color var(--transition-theme);
+  transition: width 10s linear, background-color var(--transition-theme);
 }
 
 /* Dark mode progress bar */

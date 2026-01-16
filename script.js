@@ -264,7 +264,7 @@
     
     // Start animation with delay to ensure transition triggers
     requestAnimationFrame(function() {
-      bar.style.transition = 'width 7s linear';
+      bar.style.transition = 'width 10s linear';
       bar.style.width = '100%';
       progressBar.classList.add('running');
     });
@@ -507,7 +507,7 @@
    * Auto-carousel interval duration in milliseconds
    * @type {number}
    */
-  const CAROUSEL_INTERVAL = 7000;
+  const CAROUSEL_INTERVAL = 10000;
 
   /**
    * Whether carousel is paused by user interaction
