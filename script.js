@@ -251,17 +251,23 @@
     progressBar = document.getElementById('carouselProgress');
     if (!progressBar) return;
     
-    // Reset and start animation
-    progressBar.classList.remove('paused', 'running');
     const bar = progressBar.querySelector('.carousel-progress-bar');
-    if (bar) {
-      bar.style.width = '0%';
-    }
+    if (!bar) return;
     
-    // Force reflow to restart animation
-    void progressBar.offsetWidth;
+    // Reset: remove running class and set width to 0
+    progressBar.classList.remove('paused', 'running');
+    bar.style.transition = 'none';
+    bar.style.width = '0%';
     
-    progressBar.classList.add('running');
+    // Force reflow to apply the reset
+    void bar.offsetWidth;
+    
+    // Start animation with delay to ensure transition triggers
+    requestAnimationFrame(function() {
+      bar.style.transition = 'width 5s linear';
+      bar.style.width = '100%';
+      progressBar.classList.add('running');
+    });
   }
 
   /**
