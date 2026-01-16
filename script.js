@@ -213,22 +213,90 @@
   }
 
   /**
+   * Updates image visibility with fade transition
+   * @param {HTMLElement} showcase - The showcase element
+   * @param {string} imageId - The image identifier to show
+   * @param {boolean} [skipTransition=false] - Whether to skip fade transition
+   */
+  function updateImageVisibility(showcase, imageId, skipTransition) {
+    if (!showcase || !imageId) return;
+    
+    const wrapper = showcase.querySelector('.showcase-image-wrapper');
+    if (!wrapper) return;
+    
+    if (skipTransition) {
+      // Update immediately without transition
+      showcase.setAttribute('data-selected', imageId);
+      return;
+    }
+    
+    // Fade out
+    wrapper.classList.add('fading');
+    
+    // After fade out, switch image and fade in
+    setTimeout(function() {
+      showcase.setAttribute('data-selected', imageId);
+      
+      // Small delay before fading back in
+      setTimeout(function() {
+        wrapper.classList.remove('fading');
+      }, 50);
+    }, 300);
+  }
+
+  /**
+   * Starts the progress bar animation
+   */
+  function startProgressBar() {
+    progressBar = document.getElementById('carouselProgress');
+    if (!progressBar) return;
+    
+    // Reset and start animation
+    progressBar.classList.remove('paused', 'running');
+    const bar = progressBar.querySelector('.carousel-progress-bar');
+    if (bar) {
+      bar.style.width = '0%';
+    }
+    
+    // Force reflow to restart animation
+    void progressBar.offsetWidth;
+    
+    progressBar.classList.add('running');
+  }
+
+  /**
+   * Pauses the progress bar animation
+   */
+  function pauseProgressBar() {
+    if (!progressBar) {
+      progressBar = document.getElementById('carouselProgress');
+    }
+    if (progressBar) {
+      progressBar.classList.remove('running');
+      progressBar.classList.add('paused');
+    }
+  }
+
+  /**
    * Starts the auto-carousel for desktop
    * @param {NodeList} entries - List of selectable entries
    * @param {HTMLElement} showcase - The showcase element
    */
   function startCarousel(entries, showcase) {
-    // Only start carousel on desktop
-    if (isMobile() || !entries || entries.length === 0 || !showcase) {
+    // Only start carousel on desktop and if not paused
+    if (isMobile() || !entries || entries.length === 0 || !showcase || carouselPaused) {
       return;
     }
     
     // Clear any existing interval
     stopCarousel();
     
+    // Start progress bar
+    startProgressBar();
+    
     carouselIntervalId = setInterval(function() {
-      // Don't run on mobile
-      if (isMobile()) {
+      // Don't run on mobile or if paused
+      if (isMobile() || carouselPaused) {
         stopCarousel();
         return;
       }
@@ -253,8 +321,11 @@
       
       const imageId = nextEntry.getAttribute('data-image');
       if (imageId) {
-        showcase.setAttribute('data-selected', imageId);
+        updateImageVisibility(showcase, imageId);
       }
+      
+      // Restart progress bar for next cycle
+      startProgressBar();
     }, CAROUSEL_INTERVAL);
   }
 
@@ -266,6 +337,15 @@
       clearInterval(carouselIntervalId);
       carouselIntervalId = null;
     }
+  }
+
+  /**
+   * Pauses the auto-carousel (user interaction)
+   */
+  function pauseCarousel() {
+    carouselPaused = true;
+    stopCarousel();
+    pauseProgressBar();
   }
 
   /**
@@ -319,12 +399,12 @@
         entry.classList.add('selected');
         
         if (imageId) {
-          showcase.setAttribute('data-selected', imageId);
+          updateImageVisibility(showcase, imageId);
         }
         
-        // Restart carousel timer on user interaction
+        // Pause carousel on user interaction
         if (isUserAction) {
-          restartCarousel(selectableEntries, showcase);
+          pauseCarousel();
         }
       }
     }
@@ -351,7 +431,8 @@
     if (defaultEntry && !isMobile()) {
       const imageId = defaultEntry.getAttribute('data-image');
       if (imageId) {
-        showcase.setAttribute('data-selected', imageId);
+        // Initialize image visibility without transition
+        updateImageVisibility(showcase, imageId, true);
       }
     }
     
@@ -423,6 +504,18 @@
   const CAROUSEL_INTERVAL = 5000;
 
   /**
+   * Whether carousel is paused by user interaction
+   * @type {boolean}
+   */
+  let carouselPaused = false;
+
+  /**
+   * Carousel progress bar element reference
+   * @type {HTMLElement|null}
+   */
+  let progressBar = null;
+
+  /**
    * Handles window resize to sync selection state between mobile and desktop
    */
   function handleResize() {
@@ -453,12 +546,13 @@
           }
           
           if (showcase) {
-            showcase.setAttribute('data-selected', currentImageId);
+            updateImageVisibility(showcase, currentImageId, true);
           }
         }
       }
       
-      // Start carousel when switching to desktop
+      // Reset carousel paused state and start carousel when switching to desktop
+      carouselPaused = false;
       startCarousel(selectableEntries, showcase);
     }
     
@@ -466,6 +560,7 @@
     if (!wasMobile && nowMobile) {
       // Stop carousel when switching to mobile
       stopCarousel();
+      pauseProgressBar();
       
       // Get the currently selected entry on desktop
       const selectedEntry = document.querySelector('.entry.selectable.selected');

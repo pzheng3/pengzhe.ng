@@ -491,6 +491,39 @@ html[data-theme-transitioning] .footer::after {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+/* Carousel progress bar */
+.carousel-progress {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 1px;
+  z-index: 10;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-progress.paused {
+  opacity: 0;
+}
+
+.carousel-progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 1px;
+  transition: none;
+}
+
+.carousel-progress.running .carousel-progress-bar {
+  width: 100%;
+  transition: width 5s linear;
+}
+
 .showcase-image-wrapper {
   position: relative;
   z-index: 2;
@@ -499,6 +532,12 @@ html[data-theme-transitioning] .footer::after {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.showcase-image-wrapper.fading {
+  opacity: 0;
 }
 
 .showcase-image {
