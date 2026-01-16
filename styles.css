@@ -522,8 +522,11 @@ html[data-theme-transitioning] .footer::after {
 }
 
 .showcase-image-group .showcase-image {
+  width: 100%;
   max-width: min(480px, calc(100vw - var(--sidebar-width) - var(--spacing-page) * 3 - 80px));
+  height: auto;
   max-height: min(384px, calc((100vh - var(--spacing-page) * 2 - 80px) / 2 - 20px));
+  object-fit: contain;
 }
 
 /* Horizontal image group for side-by-side layout (e.g., AI mobile) */
@@ -541,10 +544,10 @@ html[data-theme-transitioning] .footer::after {
 }
 
 .showcase-image-group-horizontal .showcase-image {
-  max-height: min(874px, calc(100vh - var(--spacing-page) * 2 - 80px));
-  max-width: calc((100% - 40px) / 2); /* Account for gap between images */
   width: auto;
-  height: auto;
+  max-width: calc((100% - 40px) / 2); /* Account for gap between images */
+  height: 100%;
+  max-height: min(874px, calc(100vh - var(--spacing-page) * 2 - 80px));
   object-fit: contain;
   box-shadow: none;
   flex: 0 1 auto; /* Allow shrinking, don't force equal sizes */
@@ -975,10 +978,10 @@ html[data-theme-transitioning] .footer::after {
   }
   
   .showcase-image-wrapper .showcase-image-group .showcase-image {
+    width: 100%;
     max-width: min(480px, 100%);
-    max-height: calc((100% - 40px) / 2);
-    width: auto;
     height: auto;
+    max-height: calc((100% - 40px) / 2);
     object-fit: contain;
   }
   
@@ -992,10 +995,10 @@ html[data-theme-transitioning] .footer::after {
   }
   
   .showcase-image-wrapper .showcase-image-group-horizontal .showcase-image {
-    max-width: calc((100% - 40px) / 2);
-    max-height: 100%;
     width: auto;
-    height: auto;
+    max-width: calc((100% - 40px) / 2);
+    height: 100%;
+    max-height: 100%;
     object-fit: contain;
   }
 }
@@ -1174,10 +1177,10 @@ html[data-theme-transitioning] .footer::after {
   }
   
   .mobile-showcase-image-wrapper .showcase-image-group .showcase-image {
+    width: 100%;
     max-width: min(480px, 100%);
-    max-height: calc((100% - 20px) / 2);
-    width: auto;
     height: auto;
+    max-height: calc((100% - 20px) / 2);
     object-fit: contain;
   }
   
@@ -1195,10 +1198,10 @@ html[data-theme-transitioning] .footer::after {
   }
   
   .mobile-showcase-image-wrapper .showcase-image-group-horizontal .showcase-image {
-    max-width: calc((100% - 40px) / 2);
-    max-height: 100%;
     width: auto;
-    height: auto;
+    max-width: calc((100% - 40px) / 2);
+    height: 100%;
+    max-height: 100%;
     object-fit: contain;
     box-shadow: none;
     flex: 0 1 auto;
