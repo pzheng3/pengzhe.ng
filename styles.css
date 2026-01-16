@@ -962,6 +962,36 @@ html[data-theme-transitioning] .footer::after {
     --spacing-page: 32px;
     --sidebar-width: 320px;
   }
+  
+  /* Tablet: Position summarize-compose and mobile image groups with 40px top and left margin */
+  .showcase[data-selected="summarize-compose"] .showcase-image-wrapper,
+  .showcase[data-selected="ai-mobile"] .showcase-image-wrapper {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+  }
+  
+  .showcase[data-selected="summarize-compose"] .showcase-image-group,
+  .showcase[data-selected="ai-mobile"] .showcase-image-group-horizontal {
+    margin-top: 40px;
+    margin-left: 40px;
+    max-width: calc(100% - 80px);
+    max-height: calc(100% - 80px);
+  }
+  
+  .showcase[data-selected="summarize-compose"] .showcase-image-group {
+    max-width: min(480px, calc(100% - 80px));
+  }
+  
+  .showcase[data-selected="summarize-compose"] .showcase-image-group .showcase-image {
+    max-width: min(480px, calc(100% - 80px));
+    max-height: calc((100% - 80px - 40px) / 2);
+  }
+  
+  .showcase[data-selected="ai-mobile"] .showcase-image-group-horizontal .showcase-image {
+    max-width: calc((100% - 80px - 40px) / 2);
+    max-height: calc(100% - 80px);
+  }
 }
 
 /* ==========================================================================
