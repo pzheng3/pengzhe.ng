@@ -522,11 +522,12 @@ html[data-theme-transitioning] .footer::after {
 }
 
 .showcase-image-group .showcase-image {
-  width: 100%;
+  width: auto;
   max-width: min(480px, calc(100vw - var(--sidebar-width) - var(--spacing-page) * 3 - 80px));
   height: auto;
   max-height: min(384px, calc((100vh - var(--spacing-page) * 2 - 80px) / 2 - 20px));
   object-fit: contain;
+  box-shadow: none;
 }
 
 /* Horizontal image group for side-by-side layout (e.g., AI mobile) */
@@ -1141,11 +1142,12 @@ html[data-theme-transitioning] .footer::after {
   }
   
   .mobile-showcase-image-wrapper .showcase-image-group .showcase-image {
-    width: 100%;
+    width: auto;
     max-width: min(480px, 100%);
     height: auto;
     max-height: calc((100% - 20px) / 2);
     object-fit: contain;
+    box-shadow: none;
   }
   
   .mobile-showcase-image-wrapper .showcase-image-group-horizontal {
