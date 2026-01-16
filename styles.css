@@ -307,7 +307,11 @@ img {
 /* Selectable entries */
 .entry.selectable {
   cursor: pointer;
-  transition: color var(--transition-theme);
+}
+
+.entry.selectable .company,
+.entry.selectable .project {
+  transition: color 0.5s ease;
 }
 
 .entry.selectable:hover .company {
@@ -542,7 +546,7 @@ html[data-theme-transitioning] .footer::after {
   justify-content: center;
   box-sizing: border-box;
   opacity: 1;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.5s ease;
 }
 
 .showcase-image-wrapper.fading {

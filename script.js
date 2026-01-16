@@ -241,7 +241,7 @@
       setTimeout(function() {
         wrapper.classList.remove('fading');
       }, 50);
-    }, 300);
+    }, 500);
   }
 
   /**
