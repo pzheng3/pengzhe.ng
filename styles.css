@@ -499,12 +499,12 @@ html[data-theme-transitioning] .footer::after {
   transform: translateX(-50%);
   width: 50px;
   height: 6px;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.4);
   border-radius: 3px;
   z-index: 10;
   overflow: hidden;
   opacity: 1;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, background-color var(--transition-theme);
 }
 
 .carousel-progress.paused {
@@ -514,14 +514,23 @@ html[data-theme-transitioning] .footer::after {
 .carousel-progress-bar {
   height: 100%;
   width: 0%;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.95);
   border-radius: 3px;
   transition: none;
 }
 
 .carousel-progress.running .carousel-progress-bar {
   width: 100%;
-  transition: width 5s linear;
+  transition: width 5s linear, background-color var(--transition-theme);
+}
+
+/* Dark mode progress bar */
+[data-theme="dark"] .carousel-progress {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .carousel-progress-bar {
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .showcase-image-wrapper {
