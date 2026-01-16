@@ -965,13 +965,14 @@ html[data-theme-transitioning] .footer::after {
     --spacing-page: 32px;
     --sidebar-width: 320px;
   }
-  
-  /* Tablet: Treat image groups as a whole unit with 40px minimum margin */
-  /* The wrapper has 40px padding, so image groups should fit within available space */
-  /* Vertical image group (summarize-compose) - treat as whole unit */
+}
+
+/* Tablet range: 769px to 1024px - ensure image groups don't exceed wrapper */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Vertical image group (summarize-compose) - constrained to wrapper */
   .showcase-image-wrapper .showcase-image-group {
-    max-width: calc(100vw - var(--sidebar-width) - var(--spacing-page) * 2 - 80px);
-    max-height: calc(100vh - var(--spacing-page) * 2 - 80px);
+    max-width: 100%;
+    max-height: 100%;
     width: auto;
     height: auto;
     box-sizing: border-box;
@@ -985,10 +986,10 @@ html[data-theme-transitioning] .footer::after {
     object-fit: contain;
   }
   
-  /* Horizontal image group (mobile) - treat as whole unit */
+  /* Horizontal image group (mobile) - constrained to wrapper */
   .showcase-image-wrapper .showcase-image-group-horizontal {
-    max-width: calc(100vw - var(--sidebar-width) - var(--spacing-page) * 2 - 80px);
-    max-height: calc(100vh - var(--spacing-page) * 2 - 80px);
+    max-width: 100%;
+    max-height: 100%;
     width: auto;
     height: auto;
     box-sizing: border-box;
