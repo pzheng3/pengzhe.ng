@@ -213,6 +213,72 @@
   }
 
   /**
+   * Starts the auto-carousel for desktop
+   * @param {NodeList} entries - List of selectable entries
+   * @param {HTMLElement} showcase - The showcase element
+   */
+  function startCarousel(entries, showcase) {
+    // Only start carousel on desktop
+    if (isMobile() || !entries || entries.length === 0 || !showcase) {
+      return;
+    }
+    
+    // Clear any existing interval
+    stopCarousel();
+    
+    carouselIntervalId = setInterval(function() {
+      // Don't run on mobile
+      if (isMobile()) {
+        stopCarousel();
+        return;
+      }
+      
+      // Find current selected index
+      let currentIndex = -1;
+      entries.forEach(function(entry, index) {
+        if (entry.classList.contains('selected')) {
+          currentIndex = index;
+        }
+      });
+      
+      // Calculate next index (loop back to 0 at the end)
+      const nextIndex = (currentIndex + 1) % entries.length;
+      const nextEntry = entries[nextIndex];
+      
+      // Select next entry
+      entries.forEach(function(e) {
+        e.classList.remove('selected');
+      });
+      nextEntry.classList.add('selected');
+      
+      const imageId = nextEntry.getAttribute('data-image');
+      if (imageId) {
+        showcase.setAttribute('data-selected', imageId);
+      }
+    }, CAROUSEL_INTERVAL);
+  }
+
+  /**
+   * Stops the auto-carousel
+   */
+  function stopCarousel() {
+    if (carouselIntervalId !== null) {
+      clearInterval(carouselIntervalId);
+      carouselIntervalId = null;
+    }
+  }
+
+  /**
+   * Restarts the auto-carousel (used after user interaction)
+   * @param {NodeList} entries - List of selectable entries
+   * @param {HTMLElement} showcase - The showcase element
+   */
+  function restartCarousel(entries, showcase) {
+    stopCarousel();
+    startCarousel(entries, showcase);
+  }
+
+  /**
    * Handles entry selection and image switching
    */
   function setupEntrySelection() {
@@ -227,8 +293,13 @@
     /**
      * Selects an entry and updates the showcase image
      * @param {HTMLElement} entry - The entry element to select
+     * @param {boolean} [isUserAction=true] - Whether this is a user-triggered action
      */
-    function selectEntry(entry) {
+    function selectEntry(entry, isUserAction) {
+      if (isUserAction === undefined) {
+        isUserAction = true;
+      }
+      
       // Get the image identifier from data attribute
       const imageId = entry.getAttribute('data-image');
       
@@ -250,13 +321,18 @@
         if (imageId) {
           showcase.setAttribute('data-selected', imageId);
         }
+        
+        // Restart carousel timer on user interaction
+        if (isUserAction) {
+          restartCarousel(selectableEntries, showcase);
+        }
       }
     }
     
     // Add click handlers to all selectable entries
     selectableEntries.forEach(function(entry) {
       entry.addEventListener('click', function() {
-        selectEntry(entry);
+        selectEntry(entry, true);
       });
       
       // Add keyboard support
@@ -265,7 +341,7 @@
       entry.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          selectEntry(entry);
+          selectEntry(entry, true);
         }
       });
     });
@@ -277,6 +353,11 @@
       if (imageId) {
         showcase.setAttribute('data-selected', imageId);
       }
+    }
+    
+    // Start auto-carousel on desktop
+    if (!isMobile()) {
+      startCarousel(selectableEntries, showcase);
     }
     
     // Setup modal close handlers
@@ -330,6 +411,18 @@
   let wasMobile = false;
 
   /**
+   * Auto-carousel interval ID
+   * @type {number|null}
+   */
+  let carouselIntervalId = null;
+
+  /**
+   * Auto-carousel interval duration in milliseconds
+   * @type {number}
+   */
+  const CAROUSEL_INTERVAL = 5000;
+
+  /**
    * Handles window resize to sync selection state between mobile and desktop
    */
   function handleResize() {
@@ -364,10 +457,16 @@
           }
         }
       }
+      
+      // Start carousel when switching to desktop
+      startCarousel(selectableEntries, showcase);
     }
     
     // Switching from desktop to mobile
     if (!wasMobile && nowMobile) {
+      // Stop carousel when switching to mobile
+      stopCarousel();
+      
       // Get the currently selected entry on desktop
       const selectedEntry = document.querySelector('.entry.selectable.selected');
       
