@@ -546,7 +546,7 @@ html[data-theme-transitioning] .footer::after {
   justify-content: center;
   box-sizing: border-box;
   opacity: 1;
-  transition: opacity 0.5s linear;
+  transition: opacity 0.4s linear;
 }
 
 .showcase-image-wrapper.fading {
@@ -555,7 +555,7 @@ html[data-theme-transitioning] .footer::after {
 
 .showcase-image-wrapper.fading-fast {
   opacity: 0;
-  transition: opacity 0.2s linear;
+  transition: opacity 0.1s linear;
 }
 
 .showcase-image {
@@ -1031,7 +1031,7 @@ html[data-theme-transitioning] .footer::after {
 
 /* Hide mobile modal on desktop by default */
 .mobile-modal {
-  display: none !important;
+  display: none;
 }
 
 @media (max-width: 768px) {
@@ -1074,7 +1074,7 @@ html[data-theme-transitioning] .footer::after {
   
   /* Mobile Modal */
   .mobile-modal {
-    display: none !important;
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -1084,12 +1084,18 @@ html[data-theme-transitioning] .footer::after {
     height: 100%;
     min-height: 100dvh;
     z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.1s linear, visibility 0.1s linear;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
   
   .mobile-modal.active {
-    display: block !important;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
   
   .mobile-modal-underlay {
