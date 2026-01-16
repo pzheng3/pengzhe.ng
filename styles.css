@@ -274,6 +274,16 @@ img {
   word-wrap: break-word;
 }
 
+.project a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition-theme);
+}
+
+.project a:hover {
+  color: var(--color-link-hover);
+}
+
 .project-link {
   color: var(--color-text);
   display: inline;
