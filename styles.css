@@ -1087,7 +1087,7 @@ html[data-theme-transitioning] .footer::after {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.1s linear, visibility 0.1s linear;
+    transition: opacity 0.2s linear, visibility 0.1s linear;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
