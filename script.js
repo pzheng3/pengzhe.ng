@@ -324,15 +324,72 @@
   }
 
   /**
-   * Handles window resize to update mobile/desktop behavior
+   * Track previous mobile state for resize handling
+   * @type {boolean}
+   */
+  let wasMobile = false;
+
+  /**
+   * Handles window resize to sync selection state between mobile and desktop
    */
   function handleResize() {
     const modal = document.getElementById('mobileModal');
+    const showcase = document.querySelector('.showcase');
+    const mobileShowcase = document.querySelector('.mobile-showcase');
+    const selectableEntries = document.querySelectorAll('.entry.selectable');
+    const nowMobile = isMobile();
     
-    // If resizing from mobile to desktop, close modal
-    if (!isMobile() && modal && modal.classList.contains('active')) {
-      closeMobileModal();
+    // Switching from mobile to desktop
+    if (wasMobile && !nowMobile) {
+      if (modal && modal.classList.contains('active')) {
+        // Get the currently displayed image in modal
+        const currentImageId = mobileShowcase ? mobileShowcase.getAttribute('data-selected') : null;
+        
+        // Close the modal
+        closeMobileModal();
+        
+        // Find and select the corresponding entry on desktop
+        if (currentImageId) {
+          selectableEntries.forEach(function(entry) {
+            entry.classList.remove('selected');
+          });
+          
+          const correspondingEntry = document.querySelector('.entry.selectable[data-image="' + currentImageId + '"]');
+          if (correspondingEntry) {
+            correspondingEntry.classList.add('selected');
+          }
+          
+          if (showcase) {
+            showcase.setAttribute('data-selected', currentImageId);
+          }
+        }
+      }
     }
+    
+    // Switching from desktop to mobile
+    if (!wasMobile && nowMobile) {
+      // Get the currently selected entry on desktop
+      const selectedEntry = document.querySelector('.entry.selectable.selected');
+      
+      if (selectedEntry) {
+        const currentImageId = selectedEntry.getAttribute('data-image');
+        
+        // Update mobile showcase with the same selection (but don't open modal)
+        if (mobileShowcase && currentImageId) {
+          mobileShowcase.setAttribute('data-selected', currentImageId);
+        }
+      }
+    }
+    
+    wasMobile = nowMobile;
+  }
+
+  /**
+   * Initialize resize tracking
+   */
+  function initResizeTracking() {
+    wasMobile = isMobile();
+    window.addEventListener('resize', handleResize);
   }
 
   // Initialize immediately to prevent flash of wrong theme
@@ -341,6 +398,6 @@
   // Initialize entry selection
   initEntrySelection();
   
-  // Handle window resize
-  window.addEventListener('resize', handleResize);
+  // Initialize resize tracking
+  initResizeTracking();
 })();
