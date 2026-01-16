@@ -968,6 +968,11 @@ html[data-theme-transitioning] .footer::after {
    Responsive Design - Mobile
    ========================================================================== */
 
+/* Hide mobile modal on desktop by default */
+.mobile-modal {
+  display: none !important;
+}
+
 @media (max-width: 768px) {
   :root {
     --spacing-page: 24px;
@@ -1008,7 +1013,7 @@ html[data-theme-transitioning] .footer::after {
   
   /* Mobile Modal */
   .mobile-modal {
-    display: none;
+    display: none !important;
     position: fixed;
     top: 0;
     left: 0;
@@ -1020,7 +1025,7 @@ html[data-theme-transitioning] .footer::after {
   }
   
   .mobile-modal.active {
-    display: block;
+    display: block !important;
   }
   
   .mobile-modal-underlay {
