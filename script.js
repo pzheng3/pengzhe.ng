@@ -216,28 +216,33 @@
    * Updates image visibility with fade transition
    * @param {HTMLElement} showcase - The showcase element
    * @param {string} imageId - The image identifier to show
-   * @param {boolean} [skipTransition=false] - Whether to skip fade transition
+   * @param {boolean|string} [transitionMode=false] - false for normal, true/'skip' to skip, 'fast' for quick transition
    */
-  function updateImageVisibility(showcase, imageId, skipTransition) {
+  function updateImageVisibility(showcase, imageId, transitionMode) {
     if (!showcase || !imageId) return;
     
     const wrapper = showcase.querySelector('.showcase-image-wrapper');
     if (!wrapper) return;
     
-    if (skipTransition) {
+    if (transitionMode === true || transitionMode === 'skip') {
       // Update immediately without transition
       showcase.setAttribute('data-selected', imageId);
       return;
     }
     
-    // Fade out
-    wrapper.classList.add('fading');
+    // Determine transition duration based on mode
+    const isFast = transitionMode === 'fast';
+    const duration = isFast ? 200 : 500;
     
-    // Switch image halfway through fade out, so fade in overlaps with fade out
+    // Add appropriate class for transition speed
+    wrapper.classList.remove('fading', 'fading-fast');
+    wrapper.classList.add(isFast ? 'fading-fast' : 'fading');
+    
+    // Switch image and fade back in
     setTimeout(function() {
       showcase.setAttribute('data-selected', imageId);
-      wrapper.classList.remove('fading');
-    }, 500);
+      wrapper.classList.remove('fading', 'fading-fast');
+    }, duration);
   }
 
   /**
@@ -401,7 +406,8 @@
         entry.classList.add('selected');
         
         if (imageId) {
-          updateImageVisibility(showcase, imageId);
+          // Use fast transition for user clicks, normal for carousel
+          updateImageVisibility(showcase, imageId, isUserAction ? 'fast' : false);
         }
         
         // Pause carousel on user interaction

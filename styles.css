@@ -553,6 +553,11 @@ html[data-theme-transitioning] .footer::after {
   opacity: 0;
 }
 
+.showcase-image-wrapper.fading-fast {
+  opacity: 0;
+  transition: opacity 0.2s linear;
+}
+
 .showcase-image {
   display: block;
   width: auto;
