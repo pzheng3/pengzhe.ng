@@ -494,12 +494,12 @@ html[data-theme-transitioning] .footer::after {
 /* Carousel progress bar */
 .carousel-progress {
   position: absolute;
-  bottom: 40px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 120px;
+  width: 30px;
   height: 2px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.25);
   border-radius: 1px;
   z-index: 10;
   overflow: hidden;
@@ -514,7 +514,7 @@ html[data-theme-transitioning] .footer::after {
 .carousel-progress-bar {
   height: 100%;
   width: 0%;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 1px;
   transition: none;
 }
